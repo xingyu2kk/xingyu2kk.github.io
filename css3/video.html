@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;}
+        body,html{width:100%;height:100%;overflow:hidden;background:black;}
+        #box{width:600px;margin:200px auto;cursor:pointer;}
+        video{-webkit-box-shadow:0 0 20px #fff;}
+        #playBar{width:100%;height:20px;background:#ccc;position:relative;}
+        #bar{width:0%;height:100%;background:aqua;position:absolute;top:0;left:0;}
+        #dragBar{width:12px;height:100%;position:absolute;top:0;left:0;background:royalblue;}
+        #controlBox{width:100%;text-align:center;}
+        input{width:60px;height:30px;margin:5px;font-size:16px;cursor:pointer;}
+    </style>
+    <script>
+        window.onload=function(){
+            var oV=document.getElementById('v1');
+            var oPlayBar=document.getElementById('playBar');
+            var oBar=document.getElementById('bar');
+            var oDragBar=document.getElementById('dragBar');
+            var oBtn1=document.getElementById('btn1');
+            var oBtn2=document.getElementById('btn2');
+            var oBtn3=document.getElementById('btn3');
+            var oBtn4=document.getElementById('btn4');
+            var oBtn5=document.getElementById('btn5');
+            var oBtn6=document.getElementById('btn6');
+            var oBtn7=document.getElementById('btn7');
+            var arr=[oBtn1,oBtn2,oBtn3,oBtn4,oBtn5,oBtn6,oBtn7];
+            for(var i=0;i<arr.length;i++){
+                arr[i].onmousedown=function(){
+                    this.style.background='royalblue';
+                    this.focus();
+                };
+                arr[i].onmouseup=function(){
+                    this.style.background='#ccc';
+                    this.blur();
+                };
+            }
+            oBtn1.onclick=function(){
+                if(oV.paused){
+                    oV.play();
+                    this.value='暂停';
+                }else{
+                    oV.pause();
+                    this.value='播放';
+                }
+                bFlag=!bFlag
+            };
+            oV.volume=0.2;
+            oBtn2.onclick=function(){
+                (oV.volume<=0.9)&&(oV.volume+=0.1);
+            };
+            oBtn3.onclick=function(){
+                (oV.volume>=0.1)&&(oV.volume-=0.1);
+            };
+            var bOk=false;
+            oBtn4.onclick=function(){
+                if(bOk){
+                    this.value='静音';
+                    oV.muted=false;
+                }else{
+                    this.value='正常';
+                    oV.muted=true;
+                }
+                bOk=!bOk;
+            };
+            oBtn5.onclick=function(){
+                oV.currentTime-=3;
+                oBar.style.width=(oPlayBar.offsetWidth-oDragBar.offsetWidth)*(oV.currentTime/oV.duration)+'px';
+                oDragBar.style.left=(oPlayBar.offsetWidth-oDragBar.offsetWidth)*(oV.currentTime/oV.duration)+'px';
+            };
+           // alert(typeof oV.currentTime);
+            oBtn6.onclick=function(){
+                oV.currentTime+=3;
+                oBar.style.width=(oPlayBar.offsetWidth-oDragBar.offsetWidth)*(oV.currentTime/oV.duration)+'px';
+                oDragBar.style.left=(oPlayBar.offsetWidth-oDragBar.offsetWidth)*(oV.currentTime/oV.duration)+'px';
+            };
+            oBtn7.onclick=function(){
+                oV.webkitRequestFullscreen();
+            };
+            var bReady=false;
+            oV.ondblclick=function(){
+                if(bReady==false){
+                    oV.webkitRequestFullscreen();
+                }else{
+                    document.webkitExitFullscreen();
+                }
+                bReady=!bReady;
+            };
+            var bFlag=false;
+            oV.onclick=function(){
+                if(bFlag==false){
+                    oV.play();
+                }else{
+                    oV.pause();
+                }
+                bFlag=!bFlag;
+            };
+            oV.ontimeupdate=function(){
+                var scale=oV.currentTime/oV.duration;
+                oBar.style.width=(oPlayBar.offsetWidth-oDragBar.offsetWidth)*scale+'px';
+                oDragBar.style.left=(oPlayBar.offsetWidth-oDragBar.offsetWidth)*scale+'px';
+            };
+            oDragBar.onmousedown=function(ev){
+                var disX=ev.clientX-oDragBar.offsetLeft;
+                document.onmousemove=function(ev){
+                    var l=ev.clientX-disX;
+                    if(l<=0){
+                        l=0;
+                    }else if(l>=oPlayBar.offsetWidth-oDragBar.offsetWidth){
+                        l=oPlayBar.offsetWidth-oDragBar.offsetWidth;
+                    }
+                    oBar.style.width=l+'px';
+                    oDragBar.style.left=l+'px';
+                    oV.currentTime=oV.duration*(l/(oPlayBar.offsetWidth-oDragBar.offsetWidth));
+                };
+                document.onmouseup=function(){
+                    document.onmousemove=null;
+                    document.onmouseup=null;
+                };
+                return false;
+            };
+            oPlayBar.onclick=function(ev){
+                var l=ev.clientX-oPlayBar.offsetLeft;
+                oBar.style.width=l+'px';
+                oDragBar.style.left=l+'px';
+                oV.currentTime=oV.duration*(l/(oPlayBar.offsetWidth-oDragBar.offsetWidth));
+            };
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+        <div id="playBox">
+            <video src="1.mp4" width="600" id="v1"></video>
+            <div id="playBar">
+                <span id="bar"></span>
+                <span id="dragBar"></span>
+            </div>
+        </div>
+        <div id="controlBox">
+            <input type="button" value="播放" id="btn1">
+            <input type="button" value="音量+" id="btn2">
+            <input type="button" value="音量-" id="btn3">
+            <input type="button" value="静音" id="btn4">
+            <input type="button" value="快退" id="btn5">
+            <input type="button" value="快进" id="btn6">
+            <input type="button" value="全屏" id="btn7">
+        </div>
+    </div>
+</body>
+</html>

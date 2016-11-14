@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+
+        }
+        html,body{
+            overflow:hidden;
+            width:100%;
+            background:#000;
+            text-align:center;
+        }
+        input{
+            border:1px solid #000;
+            padding:10px 20px;
+            background:#399;
+            margin: 10px;
+            color: #fff;
+            text-shadow: 1px 1px 3px #000;
+            border-radius: 8px;
+            box-shadow: 0px 2px 3px #000;
+            outline: none;
+            cursor:pointer;
+            position: relative;
+            z-index: 100;
+        }
+        #btn{width:80px;height:40px;font-size:20px;}
+        input[type=text]{
+            cursor: text;
+        }
+        .login{
+            padding: 10px;
+            background: #3abdbf;
+            border: 1px dashed #9c9c9c;
+            position: absolute;
+            left: 50%;
+            top:50%;
+            text-align: center;
+            margin-left: -155px;
+            margin-top: -98px;
+            border-radius: 8px;
+            transform: scale(5);
+            opacity: 0;
+        }
+        .on{
+            transition:.4s all cubic-bezier(0.52,2.14,0.6,0.54);
+            transform:scale(1);
+            opacity:1;
+        }
+        .hide{
+            transition:.4s all ease;
+            transform:scale(5);
+            opacity:0;
+        }
+        #close{
+            position: absolute;
+            width: 40px;
+            height:40px;
+            background: #399;
+            right: -25px;
+            top: -25px;
+            line-height: 40px;
+            font-size: 20px;
+            font-weight: bolder;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #000;
+        }
+        .title {
+            width: 100%;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            font-size: 42px;
+            color: #fff;
+        }
+        .text_intro {
+            width: 100%;
+            height: 100px;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            text-align: center;
+            line-height: 100px;
+            font-size: 24px;
+            color: #eee;
+        }
+    </style>
+    <script src="jquery-1.7.2.min.js"></script>
+    <script>
+        $(function(){
+            var oBtn=$('#btn');
+            var oBox=$('.login');
+            var oClose=$('#close');
+            $(oBtn).on('click',function(){
+               $(oBox).removeClass('hide');
+               $(oBox).addClass('on');
+            });
+            $(oClose).on('click',function(){
+                $(oBox).addClass('hide');
+                $(oBox).removeClass('on');
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="title">JQuery登录界面效果</div>
+<input type="button" id="btn" value="登录"/>
+<div class="login">
+    <a href="javascript:;" id="close">×</a>
+    user:
+    <input type="text"/>
+    <br>
+    pass:
+    <input type="text"/>
+    <br>
+    <input type="button" value="登录" id="log">
+    <input type="button" value="注册" id="reg">
+</div>
+<p class="text_intro">点击按钮查看效果</p>
+</body>
+</html>

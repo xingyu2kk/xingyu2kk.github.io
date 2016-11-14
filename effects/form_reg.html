@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input.err{border-color:red;}
+        input.suc{border-color:blue;}
+    </style>
+    <script>
+        window.onload=function(){
+            var reg={
+                email:/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/,
+                tel:/1[3-8]\d{9}/,
+                age:/1[8-9]|[2-9]{2}|100/,
+                cName:/^[\u4e00-\u9fa5]{2,4}/
+            }
+            var oF=document.getElementById('F1');
+            var aInp=oF.children;
+            for(var i=0;i<aInp.length;i++){
+                aInp[i].onfocus=function(){
+                    this.className='';
+                    this.onblur=function(){
+                        if(reg[this.name]){
+                            if(!reg[this.name].test(this.value)){
+                                this.className='err';
+                            }else{
+                                this.className='suc';
+                            }
+                        }
+                    };
+                };
+            }
+            function check(){
+                for(var i=0;i<aInp.length;i++){
+                    if(reg[aInp[i].name]){
+                        if(!reg[aInp[i].name].test(aInp[i].value)){
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            oF.onsubmit=function(){
+                for(var i=0;i<aInp.length;i++){
+                    if(reg[aInp[i].name]){
+                        if(!reg[aInp[i].name].test(aInp[i].value)){
+                            aInp[i].className='err';
+                        }
+                    }
+                }
+                if(!check()){
+                    return false;
+                }
+            };
+        };
+    </script>
+</head>
+<body>
+<form action="http://www.baidu.com" id="F1">
+    email:<input type="text" name="email" id="email">
+    tel:<input type="text" name="tel" id="tel">
+    age:<input type="text" name="age" id="age">
+    cName:<input type="text" name="cName" id="cName">
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

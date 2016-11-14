@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin:0;padding:0;list-style:none;}
+	li{float:left;width:calc(12.5% - 2px);height:300px;line-height:300px;text-align:center;font-size:50px;
+		background:#eee;color:aqua;border:1px solid #000;position:relative;}
+	li.on{background:#ccc;position:relative;}
+	</style>
+	<script src="sound.js"></script>
+	<script>
+	window.onload=function(){
+		var aLi=document.querySelectorAll('ul li');
+		var n=0;
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].dataset.index=i;
+			aLi[i].onmousedown=function(){
+				n=this.dataset.index;
+				this.classList.add('on');
+				var oA=new Audio();
+				oA.src=oggSound['sound'+(49+parseInt(n))];
+				oA.play();
+				return false;
+			};
+			document.onmouseup=function(){
+				aLi[n].classList.remove('on');
+			};
+		}
+		document.onkeydown=function(ev){
+			if(ev.keyCode>48&&ev.keyCode<57){
+				aLi[ev.keyCode-49].classList.add('on');
+				var oA=new Audio();
+				oA.src=oggSound['sound'+ev.keyCode];
+				oA.play();
+			}
+		};
+		document.onkeyup=function(ev){
+			if(ev.keyCode>48&&ev.keyCode<57){
+				aLi[ev.keyCode-49].classList.remove('on');
+			}
+		};
+	};
+	</script>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+</body>
+</html>

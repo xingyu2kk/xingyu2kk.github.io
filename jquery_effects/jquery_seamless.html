@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{
+		margin:0;
+		padding:0;
+		list-style:none;
+	}
+	html,body {
+		width: 100%;
+		background: #000;
+		text-align:center;
+	}
+	input{width:100px;height:50px;font-size:24px;}
+	#box{
+		width:880px;
+		height:220px;
+		border:1px solid #ccc;
+		padding:10px 0;
+		position:absolute;
+		top:50%;
+		left:50%;
+		margin:-110px 0 0 -440px;
+		overflow:hidden;
+	}
+	#box ul{
+		height:220px;
+		position:absolute;
+		top:0;
+		left:0;
+		padding:10px 0;
+	}
+	#box ul li{
+		 width:200px;
+		 height:220px;
+		 float:left;
+		 padding:0 10px;
+	}
+	#box ul li img{
+		 width:200px;
+		 height:220px;
+	}
+	.title {
+		width: 100%;
+		height: 200px;
+		line-height: 200px;
+		text-align: center;
+		font-size: 42px;
+		color: #fff;
+	}
+	.text_intro {
+		width: 100%;
+		height: 100px;
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		text-align: center;
+		line-height: 100px;
+		font-size: 24px;
+		color: #eee;
+	}
+</style>
+<script src="jquery-1.7.2.min.js"></script>
+<script>
+$(function(){
+	var oLeft=$('#left');
+	var oRight=$('#right');
+	var oBox=$('#box');
+	var oUl=$('#box').children('ul');
+	var oClose=$('#close');
+	var timer=null;
+	oUl.html(oUl.html()+oUl.html());
+	var aLi=oUl.children('li');
+	oUl.css({'width':220*aLi.length+'px'});
+	var W=oUl.outerWidth()/2;
+	var l=0;
+	oLeft.click(toLeft);
+	oRight.click(toRight);
+	oClose.click(function(){clearInterval(timer);});
+	function toLeft(){
+		 clearInterval(timer);
+		 timer=setInterval(function(){
+			 l-=5;
+			 var a=l%W;
+			 oUl.css({
+				left:(a-W)%W+'px' 	 
+			 });
+		 },30);
+	}
+	toLeft();
+	function toRight(){
+		 clearInterval(timer);
+		 timer=setInterval(function(){
+			 l+=5;
+			 var a=l%W;
+			 oUl.css({
+				left:(a-W)%W+'px' 	 
+			 });
+		 },30);	
+	}
+});
+</script>
+</head>
+<body>
+<div class="title">JQuery自定义滚动条</div>
+<input type="button" id="left" value="向左滚动">
+<input type="button" value="暂停" id="close">
+<input type="button" id="right" value="向右滚动">
+<div id="box">
+    <ul>
+        <li>
+            <img src="cat/1.jpg">
+        </li>
+        <li>
+            <img src="cat/2.jpg">
+        </li>
+        <li>
+            <img src="cat/3.jpg">
+        </li>
+        <li>
+            <img src="cat/4.jpg">
+        </li>
+    </ul>
+</div>
+<p class="text_intro">鼠标拖拽滚动条或者滚动鼠标滑轮试试</p>
+</body>
+</html>

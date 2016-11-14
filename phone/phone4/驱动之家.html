@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Document</title>
+    <link rel="stylesheet" href="swiper-3.3.1.min.css">
+    <script src="swiper-3.3.1.min.js"></script>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            list-style:none;
+            vertical-align: top;
+            text-decoration:none;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float:right;
+        }
+        html{
+            width:100%;
+            height: 100%;
+        }
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .head{
+            width:15.2rem;
+            height:1.9rem;
+            padding:0.3rem 0 0 0.8rem;
+            font-size:0.7rem;
+            color: #fff;
+            background: #e00104;
+            border-bottom:4px solid #d1adaf;
+        }
+        .head h1{
+
+        }
+        .head h1 a{
+            width:5.25rem;
+            height: 1.5rem;
+            display: block;
+            background:url(img/a.png);
+            background-size:5.2rem 1.5rem;
+            text-indent: -999em;
+        }
+        .head span{
+            line-height: 1.4rem;
+            margin-left:6rem;
+        }
+        .tab{
+            width:15.6rem;
+            margin-left: 0.4rem;
+            height:1.5rem;
+            padding-top:0.15rem;
+            font:0.8rem/1.2rem 'microsoft yahei';
+
+        }
+        .tab a{
+            width:3rem;
+            color:#000;
+            height: 1.2rem;
+            float:left;
+            text-align: center;
+        }
+        .tab .active{
+            border: 2px solid #c20c0b;
+            color:#c20c0b;
+        }
+        .swiper-container{
+            width: 16rem;
+            height: 8rem;
+            overflow: hidden;
+            border-bottom:14px solid #9a9a9a;
+        }
+        .swiper-wrapper{
+            width: 300%;
+            height: 8rem;
+        }
+        .swiper-slide{
+            width: 16rem;
+            height: 8rem;
+            float: left;
+            font-size: 0.5rem;
+            position: relative;
+        }
+        .swiper-slide img{
+            width: 100%;
+            height: 8rem;
+            display: block;
+
+        }
+        .swiper-slide p{
+            padding-left:0.55rem;
+            width:15.45rem;
+            height: 1.25rem;
+            background: rgba(0,0,0,.5);
+            color: #fff;
+            position:absolute;
+            left:0;
+            top:7rem;
+            line-height: 1.25rem;
+        }
+        .content{
+            width:100%;
+        }
+        .content li{
+            width:100%;
+            padding:0.7rem 0 0 0.5rem;
+            height: 100%;
+            border-bottom: 2px solid #e6e6e6;
+        }
+        .content li p{
+            width: 100%;
+            font-size: 0.8rem;
+            line-height: 1.25rem;
+            color:#2b2b2b;
+        }
+        .visitor{
+            width: 15.5rem;
+            font-size: 0.6rem;
+            line-height: 1.85rem;
+            height: 1.85rem;
+        }
+        .visitor a{
+            color: #ccc;
+        }
+        .visitor span{
+            width:2px;
+            height: 0.6rem;
+            background: #999;
+            margin:0.6rem 0.8rem 0 0.5rem
+        }
+        .visitor .num{
+            color: #999;
+            background-color:#fff;
+        }
+        .visitor i{
+            width:0.9rem;
+            height: 0.8rem;
+            background: url(img/c.png);
+            background-size:0.9rem 0.8rem;
+            margin:0.6rem 1rem 0 0.3rem;
+        }
+        .content .col{
+            color: #f00;
+        }
+        .pro{
+            width: 100%;
+
+        }
+        .iph{
+            width:6rem;
+            margin:0.8rem 1.1rem 0 0.6rem;
+        }
+        .iph img{
+            width:6rem;
+            height: 4.5rem;
+            margin-bottom: 0.55rem;
+        }
+        .iph span{
+            line-height: 1rem;
+            display: block;
+            font-size:0.6rem;
+            width: 6.25rem;
+            text-align: center;
+            margin-bottom: 0.9rem;
+            color:#7b7b7b;
+        }
+        .content .next{
+            text-align: center;
+            margin-top:-0.3rem;
+            margin-bottom:1rem;
+            margin-left: -0.3rem;
+        }
+        .foot{
+            background:#eee;
+            padding:0.85rem 0 0 2.3rem;
+            height:4rem;
+        }
+        .foot_t {
+            width: 12.3rem;
+            height: .75rem;
+            margin-left: 1.4rem;
+            font-size: 0.75rem;
+        }
+        .foot_t a{
+            font-size:0.75rem;
+            color: #4d4d4d;
+        }
+        .foot_t span{
+            width: 1px;
+            height: 0.75rem;
+            background: #000;
+            margin: 2px 0.5rem 0 0.5rem;
+        }
+        .foot_b{
+            font-size:0.5rem;
+            width: 13.7rem;
+            height: 2.4rem;
+            overflow: hidden;
+        }
+        .foot_b span{
+            margin-right: 0.5rem;
+            font-size:0.5rem;
+            line-height: 2.4rem;
+            color:#999;
+        }
+    </style>
+    <script src="index.js"></script>
+    <script>
+        ;(function(){
+            function setFont(){
+                document.documentElement.style.fontSize=document.documentElement.clientWidth/16+'px';
+            }
+            setFont();
+            window.addEventListener('resize',setFont,false);
+        })();
+        ;(function(){
+            window.onload=function(){
+               var oBox=document.getElementById('box');
+               var arr=eval(str);
+                for(var i=0;i<arr.length;i++){
+                    var oLi=document.createElement('li');
+                    oLi.innerHTML='<p>'+arr[i].content+'</p>'+
+                                   '<div class="visitor">'+
+                                   '<a href="'+arr[i].href+'" class="fl">'+arr[i].author+'</a>'+
+                                   '<span class="fl"></span>'+
+                                   '<a href="javascript" class="fl">'+arr[i].time+'</a>'+
+                                   '<div class="fr">'+
+                                   '<b class="num fl">'+arr[i].num+'</b>'+
+                                   '<i class="fl"></i>'+
+                                   '</div>'+
+                                   '</div>';
+                    oBox.appendChild(oLi);
+                }
+            };
+        })()
+    </script>
+
+</head>
+<body>
+<div>
+    <header class="head">
+        <h1 class="fl"><a href="javascript:;">驱动之家</a></h1>
+        <span class="fl">传统版</span>
+    </header>
+    <div class="tab">
+        <a href="javascript:;" class="active">全部</a>
+        <a href="javascript:;">硬件</a>
+        <a href="javascript:;">软件</a>
+        <a href="javascript:;">手机</a>
+        <a href="javascript:;">科技</a>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="img/b.png" alt=""/>
+                <p>如此逆天的ipai平板你知道吗？</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="img/b.png" alt=""/>
+                <p>如此逆天的Android平板你知道吗？</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="img/b.png" alt=""/>
+                <p>如此逆天的apple平板你知道吗？</p>
+            </div>
+        </div>
+    </div>
+    <ul class="content" id="box">
+        <!--<li>-->
+            <!--<p class="col">百度褥羊毛继续：一分钟换迅雷白金会员</p>-->
+            <!--<div class="visitor">-->
+                <!--<a href="javascript:;" class="fl">鲲鹏</a>-->
+                <!--<span class="fl"></span>-->
+                <!--<a href="javascript" class="fl">3小时前</a>-->
+                <!--<div class="fr">-->
+                    <!--<b class="num fl">21</b>-->
+                    <!--<i class="fl"></i>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</li>-->
+    </ul>
+    <ul class="content">
+        <li>
+            <p class="col">百度褥羊毛继续：一分钟换迅雷白金会员</p>
+            <div class="visitor">
+                <a href="javascript:;" class="fl">鲲鹏</a>
+                <span class="fl"></span>
+                <a href="javascript" class="fl">3小时前</a>
+                <div class="fr">
+                    <b class="num fl">21</b>
+                    <i class="fl"></i>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="pro">
+                <div class="fl iph">
+                    <img src="img/d.png" alt=""/>
+                    <span>触目惊心 解密iPhone翻新全过程</span>
+                </div>
+                <div class="fl iph">
+                    <img src="img/d.png" alt=""/>
+                    <span>东芝消费级别5TB硬盘突然上市 真便宜</span>
+                </div>
+            </div>
+            <p>真正有生命的鞋子：活体细胞合成材料制成</p>
+            <div class="visitor">
+                <a href="javascript:;" class="fl">潇潇</a>
+                <span class="fl"></span>
+                <a href="javascript" class="fl">5小时前</a>
+                <div class="fr">
+                    <b class="num fl">2</b>
+                    <i class="fl"></i>
+                </div>
+            </div>
+        </li>
+        <li>
+            <p>做工如何？神州899元5寸四核机大拆解</p>
+            <div class="visitor">
+                <a href="javascript:;" class="fl">雪花</a>
+                <span class="fl"></span>
+                <a href="javascript" class="fl">5小时前</a>
+                <div class="fr">
+                    <b class="num fl">19</b>
+                    <i class="fl"></i>
+                </div>
+            </div>
+        </li>
+        <li>
+            <p class="next">【下一页】</p>
+            </div>
+        </li>
+    </ul>
+    <footer class="foot">
+        <div class="foot_t clearfix">
+            <a href="javascript:;" class="fl">Pad版</a>
+            <span class="fl"></span>
+            <a href="javascript:;" class="fl">触屏版</a>
+            <span class="fl"></span>
+            <a href="javascript:;" class="fl">传统版</a>
+        </div>
+        <div class="foot_b clearfix">
+            <span class="fl">京ICP备</span>
+            <span class="fl">11024344号-7</span>
+            <span class="fl">驱动之家</span>
+            <span class="fl">京公网安</span>
+        </div>
+    </footer>
+</div>
+<script>
+    var swiper = new Swiper('.swiper-container');
+</script>
+</body>
+</html>

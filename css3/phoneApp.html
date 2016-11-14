@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;}
+        html,body{width:100%;height:100%;}
+        #wrap{width:100%;height:100%;}
+        #wrap header,#wrap footer {
+            width: 100%;
+            height: 40px;
+            background: #399;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            color: #fff;
+        }
+        #wrap footer{position:fixed;bottom:0;left:0;}
+        section{overflow:hidden;width:100%;}
+        .news{width:400%;overflow:hidden;}
+        .news dl{width:25%;float:left;}
+        .news dt{height:30px;line-height:30px;background:#ccc;text-align:center;}
+        .news dd{height:30px;line-height:30px;text-align:center;border-bottom:1px dashed #eee;}
+        .refresh{text-align:center;width:100%;height:0px;overflow:hidden;}
+        .color {
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: royalblue;
+            margin: 10px auto;
+            border-radius: 50%;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            alert('请在模拟器中浏览或者在手机上浏览！');
+            var oNews=document.querySelectorAll('.news')[0];
+            var aDl=document.querySelectorAll('.news dl');
+            var oRef=document.querySelectorAll('.refresh')[0];
+            var x=0;
+            var y=0;
+            var iNow=0;
+            var dir='';
+            oNews.addEventListener('touchstart',function(ev){
+                oNews.style.transition='none';
+                var downX=ev.targetTouches[0].pageX;
+                var downY=ev.targetTouches[0].pageY;
+                var disX=downX-x;
+                var disY=downY-y;
+                function fnMove(ev){
+                    if(dir){
+                        if(dir=='lr'){
+                            x=ev.targetTouches[0].pageX-disX;
+                            oNews.style.transform='translate('+x+'px,'+y+'px)';
+                        }else if(dir=='top'){
+                            y=ev.targetTouches[0].pageY-disY;
+                            y>80&&(y=80);
+                            oRef.style.height=y+'px'
+                            //oNews.style.transform='translate('+x+'px,'+y+'px)';
+                        }
+                    }else{
+                        if(Math.abs(ev.targetTouches[0].pageX-downX)>10){
+                            dir='lr';
+                        }else if(ev.targetTouches[0].pageY-downY>10){
+                            dir='top';
+                        }
+                    }
+                }
+                function fnEnd(ev){
+                    dir='';
+                    y=0;
+                    oRef.style.transition='0.4s all linear';
+                    oRef.style.height=y+'px';
+                    var upX=ev.changedTouches[0].pageX;
+                    document.removeEventListener('touchmove',fnMove,false);
+                    document.removeEventListener('touchend',fnEnd,false);
+                    if(Math.abs(upX-downX)>160){
+                        if(upX<downX){
+                            iNow++;
+                            if(iNow==aDl.length){
+                                iNow=aDl.length-1;
+                            }
+                        }else{
+                            iNow--;
+                            if(iNow==-1){
+                                iNow=0;
+                            }
+                        }
+                    }
+                    x=-iNow*aDl[0].offsetWidth;
+                    oNews.style.transition='0.4s all linear';
+                    oNews.style.transform='translate('+x+'px,'+y+'px)';
+                }
+                document.addEventListener('touchmove',fnMove,false);
+                document.addEventListener('touchend',fnEnd,false);
+                ev.preventDefault();
+            },false);
+        },false);
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <header>header</header>
+        <section>
+            <div class="refresh">
+                <span class="color"></span>
+                <span>下拉刷新</span>
+            </div>
+            <div class="news">
+                <dl>
+                    <dt>新闻1</dt>
+                    <dd>0001</dd>
+                    <dd>0002</dd>
+                    <dd>0003</dd>
+                    <dd>0004</dd>
+                    <dd>0005</dd>
+                    <dd>0006</dd>
+                    <dd>0007</dd>
+                    <dd>0008</dd>
+                    <dd>0009</dd>
+                    <dd>0010</dd>
+                </dl>
+                <dl>
+                    <dt>新闻2</dt>
+                    <dd>0001</dd>
+                    <dd>0002</dd>
+                    <dd>0003</dd>
+                    <dd>0004</dd>
+                    <dd>0005</dd>
+                    <dd>0006</dd>
+                    <dd>0007</dd>
+                    <dd>0008</dd>
+                    <dd>0009</dd>
+                    <dd>0010</dd>
+                </dl>
+                <dl>
+                    <dt>新闻3</dt>
+                    <dd>0001</dd>
+                    <dd>0002</dd>
+                    <dd>0003</dd>
+                    <dd>0004</dd>
+                    <dd>0005</dd>
+                    <dd>0006</dd>
+                    <dd>0007</dd>
+                    <dd>0008</dd>
+                    <dd>0009</dd>
+                    <dd>0010</dd>
+                </dl>
+                <dl>
+                    <dt>新闻4</dt>
+                    <dd>0001</dd>
+                    <dd>0002</dd>
+                    <dd>0003</dd>
+                    <dd>0004</dd>
+                    <dd>0005</dd>
+                    <dd>0006</dd>
+                    <dd>0007</dd>
+                    <dd>0008</dd>
+                    <dd>0009</dd>
+                    <dd>0010</dd>
+                </dl>
+            </div>
+        </section>
+        <footer>footer</footer>
+    </div>
+</body>
+</html>

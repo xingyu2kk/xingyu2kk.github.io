@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	 *{
+		margin:0;
+		padding:0;
+	}
+	 body {
+		 height: 3000px;
+		 background: #000;
+	 }
+	 #box{
+		width:800px;
+		height:600px;
+		position:absolute;
+		 top:50%;
+		 left:50%;
+		border:1px solid #000;
+		 background:#fff;
+		 margin:-300px 0 0 -400px;
+	 }
+	 #right{
+		width:40px;
+		height:100%;
+		background:#ccc;
+		position:absolute;
+		right:0;
+		top:0;
+	 }
+	 #move{
+		 width:40px;
+		 height:60px;
+		 background:royalblue;
+		 position:absolute;
+		 top:0;
+		 left:0;
+	 }
+	 #nav{
+		width:650px;
+		height:100%;
+		position:absolute;
+		left:30px;
+		top:0;
+		overflow:hidden;
+	 }
+	 #txt{
+		width:100%;
+		 line-height:30px;
+		 font-size:16px;
+		position:absolute;
+		top:0;
+		left:0;
+	 }
+	 .title {
+		 width: 100%;
+		 height: 100px;
+		 line-height: 100px;
+		 text-align: center;
+		 font-size: 42px;
+		 color: #fff;
+	 }
+	 .text_intro {
+		 width: 100%;
+		 height: 100px;
+		 position: absolute;
+		 bottom: 10px;
+		 left: 0;
+		 text-align: center;
+		 line-height: 100px;
+		 font-size: 24px;
+		 color: #eee;
+	 }
+</style>
+<script src="jquery-1.7.2.min.js"></script>
+<script>
+function addWheel(obj,fn){
+	function wheel(ev){
+		var oEvent= ev  ||  event;
+		var onOff=true;
+		onOff=oEvent.wheelDelta ? oEvent.wheelDelta>0 : oEvent.detail<0  ;
+		fn&&fn(onOff);
+		oEvent.preventDefault&&oEvent.preventDefault();
+		return false;
+	}
+	if(window.navigator.userAgent.toLowerCase().indexOf('firefox')!=-1){
+		obj.addEventListener('DOMMouseScroll',wheel,false);
+	}else{
+		obj.onmousewheel=wheel;
+	}
+}
+$(function(){
+	//console.log($('#right')[0]);
+	var oBox=$('#box');	
+	var oRight=$('#right');	
+	var oMove=$('#move');	
+	var oTxt=$('#txt');	
+	var oNav=$('#nav');
+	var t=0;
+	function getT(){
+		if(t<0){
+			t=0;	
+		}else if(t>=oRight.outerHeight()-oMove.outerHeight()){
+			t=oRight.outerHeight()-oMove.outerHeight();
+		}
+		oMove.css({
+			top:t+'px'	
+		});	
+		var a=(oTxt.height()-oNav.height())/(oRight.height()-oMove.height());
+		oTxt.css({
+			top:-a*t+'px'	
+		});
+	
+	}
+	oMove.mousedown(function(ev){
+		var disY=ev.clientY-oMove.position().top;
+		$(document).mousemove(move);
+		$(document).mouseup(up);
+		function move(ev){
+			t=ev.clientY-disY;
+			getT();
+		}	
+		function up(){
+			$(document).unbind('mousemove',move);
+			$(document).unbind('mouseup',up);
+			oMove.releaseCapture&&oMove.releaseCapture();
+				
+		}
+		oMove.setCapture&&oMove.setCapture();
+		return false;
+	});
+	addWheel(oBox[0],function(onOff){
+		if(onOff){
+			t-=30;
+			if(t<=0){
+				t=0;
+			}
+		}else{
+				t+=30;
+			if(t>=oRight.outerHeight()-oMove.outerHeight()){
+				t=oRight.outerHeight()-oMove.outerHeight();
+			}
+		}
+		getT();
+	});	
+});
+</script>
+</head>
+<body>
+	<div class="title">JQuery自定义滚动条</div>
+	<div id="box">
+		<div id="right">
+			<div id="move"></div>
+		</div>
+		<div id="nav">
+			<div id="txt">【环球时报综合报道 记者 邬宁宁】7月11日凌晨，留荷国际法学生学者联署南海仲裁案公开信的签名已达1000多人，各种媒体新闻报道的关注总量超过百万。彭芩萱和她的数十名伙伴是这封公开信的起草者和签名活动的发起者，她们还给这个活动确定了一个铿锵有力的口号：“全球联动，呼唤正义”。虽然12日才正式对外发布，这封由英文写就的公开信已经被全球各地的志愿者们陆续翻译成中文、荷文、阿拉伯文、俄文、法文、德文、西班牙文，对于公开信的签名征集也在如火如荼地进行。“(我们)甚至以邮件形式发给世界主要法学院的专家学者以及海牙国际组织的相关工作人员”，彭芩萱说。【环球时报综合报道 记者 邬宁宁        	【环球时报综合报道 记者 邬宁宁】7月11日凌晨，留荷国际法学生学者联署南海仲裁案公开信的签名已达1000多人，各种媒体新闻报道的关注总量超过百万。彭芩萱和她的数十名伙伴是这封公开信的起草者和签名活动的发起者，她们还给这个活动确定了一个铿锵有力的口号：“全球联动，呼唤正义”。虽然12日才正式对外发布，这封由英文写就的公开信已经被全球各地的志愿者们陆续翻译成中文、荷文、阿拉伯文、俄文、法文、德文、西班牙文，对于公开信的签名征集也在如火如荼地进行。“(我们)甚至以邮件形式发给世界主要法学院的专家学者以及海牙国际组织的相关工作人员”，彭芩萱说。【环球时报综合报道 记者 邬宁宁        	【环球时报综合报道 记者 邬宁宁】7月11日凌晨，留荷国际法学生学者联署南海仲裁案公开信的签名已达1000多人，各种媒体新闻报道的关注总量超过百万。彭芩萱和她的数十名伙伴是这封公开信的起草者和签名活动的发起者，她们还给这个活动确定了一个铿锵有力的口号：“全球联动，呼唤正义”。虽然12日才正式对外发布，这封由英文写就的公开信已经被全球各地的志愿者们陆续翻译成中文、荷文、阿拉伯文、俄文、法文、德文、西班牙文，对于公开信的签名征集也在如火如荼地进行。“(我们)甚至以邮件形式发给世界主要法学院的专家学者以及海牙国际组织的相关工作人员”，彭芩萱说。【环球时报综合报道 记者 邬宁宁        	【环球时报综合报道 记者 邬宁宁】7月11日凌晨，留荷国际法学生学者联署南海仲裁案公开信的签名已达1000多人，各种媒体新闻报道的关注总量超过百万。彭芩萱和她的数十名伙伴是这封公开信的起草者和签名活动的发起者，她们还给这个活动确定了一个铿锵有力的口号：“全球联动，呼唤正义”。虽然12日才正式对外发布，这封由英文写就的公开信已经被全球各地的志愿者们陆续翻译成中文、荷文、阿拉伯文、俄文、法文、德文、西班牙文，对于公开信的签名征集也在如火如荼地进行。“(我们)甚至以邮件形式发给世界主要法学院的专家学者以及海牙国际组织的相关工作人员”，彭芩萱说。【环球时报综合报道 记者 邬宁宁        	【环球时报综合报道 记者 邬宁宁】7月11日凌晨，留荷国际法学生学者联署南海仲裁案公开信的签名已达1000多人，各种媒体新闻报道的关注总量超过百万。彭芩萱和她的数十名伙伴是这封公开信的起草者和签名活动的发起者，她们还给这个活动确定了一个铿锵有力的口号：“全球联动，呼唤正义”。虽然12日才正式对外发布，这封由英文写就的公开信已经被全球各地的志愿者们陆续翻译成中文、荷文、阿拉伯文、俄文、法文、德文、西班牙文，对于公开信的签名征集也在如火如荼地进行。“(我们)甚至以邮件形式发给世界主要法学院的专家学者以及海牙国际组织的相关工作人员”，彭芩萱说。【环球时报综合报道 记者 邬宁宁        	【环球时报综合报道 记者 邬宁宁】7月11日凌晨，留荷国际法学生学者联署南海仲裁案公开信的签名已达1000多人，各种媒体新闻报道的关注总量超过百万。彭芩萱和她的数十名伙伴是这封公开信的起草者和签名活动的发起者，她们还给这个活动确定了一个铿锵有力的口号：“全球联动，呼唤正义”。虽然12日才正式对外发布，这封由英文写就的公开信已经被全球各地的志愿者们陆续翻译成中文、荷文、阿拉伯文、俄文、法文、德文、西班牙文，对于公开信的签名征集也在如火如荼地进行。“(我们)甚至以邮件形式发给世界主要法学院的专家学者以及海牙国际组织的相关工作人员”，彭芩萱】</div>
+		</div>
+	</div>
+	<p class="text_intro">鼠标拖拽滚动条或者滚动鼠标滑轮试试</p>
+</body>
+</html>

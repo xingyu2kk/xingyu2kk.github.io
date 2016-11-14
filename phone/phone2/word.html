@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width" user-scalable="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <link rel="stylesheet" href="base.css">
+    <style>
+        body,html{heigth:100%;width:100%;background:#f8f8f8;}
+        #wrap{display:-webkit-box;height:100%;-webkit-box-orient:vertical;}
+        /*header*/
+        .header {
+            height: 1.33rem;
+            background: #7dccf5;
+            padding-top: 1rem;
+        }
+        .band {
+            width: 1rem;
+            height: 1rem;
+            background: #fff;
+            text-align: center;
+            line-height: 1rem;
+            color: #7dccf5;
+            float:left;
+            font-size:0.7rem;
+            font-weight:bold;
+            border-radius:10px;
+            margin:0 0.267rem 0 0.233rem;
+        }
+        .searchbar {
+            width: 13rem;
+            height: 0.867rem;
+            border-radius: 0.533rem;
+            background: #68b1d4;
+            float: left;
+            padding-top:0.2rem;
+        }
+        .searchbar .search {
+            width: 0.533rem;
+            height: 0.533rem;
+            background: url(img/serch.png) no-repeat;
+            background-size:0.533rem 0.533rem;
+            float:left;
+            margin-left:2.667rem;
+        }
+        .searchword {
+            width: calc(100% - 5rem);
+            height: 0.7rem;
+            line-height: 0.7rem;
+            font-size: 0.4rem;
+            color: #bbe8ff;
+            float:left;
+            padding-left:0.2rem;
+        }
+        /*content*/
+        section{width:100%;-webkit-box-flex:1;}
+        .firstbg img{width:15rem;display:block;}
+        .item{width:100%;height:3.133rem;background:#e0e0e0;padding-top:0.5rem;display:-webkit-box;}
+        .item li{-webkit-box-flex:1;}
+
+        .item li a.icon1 {
+            width: 1.7rem;
+            height: 1.7rem;
+            background: url(img/icon1.png) no-repeat;
+            background-size: 1.7rem 1.7rem;
+            display:block;
+            margin:0 auto;
+        }
+        .item li a.icon2{background: url(img/icon2.png) no-repeat;background-size: 1.7rem 1.7rem;}
+        .item li a.icon3{background: url(img/icon3.png) no-repeat;background-size: 1.7rem 1.7rem;}
+        .item li a.icon4{background: url(img/icon4.png) no-repeat;background-size: 1.7rem 1.7rem;}
+        .item li a.con1 {
+            display: block;
+            width: 1.7rem;
+            height:1.2rem;
+            line-height: 1.2rem;
+            font-size: 0.4667rem;
+            text-align: center;
+            margin:0 auto;
+        }
+        .treval{width:14.6rem;margin:0 auto;padding-top:0.4rem;}
+        .treval .trvtitle{
+            width: 100%;
+            line-height: 0.833rem;
+            font-size: 0.4rem;
+            padding-left: 0.533rem;
+            color:#121212;
+            font-weight:normal;
+        }
+        .trevalbg2{margin-top:0.333rem;}
+        .trevalbg img{width:14.6rem;}
+        .trevalbg2 .mgr{float:left;margin-right:0.333rem;}
+        .trevalbg2 img{width:7.117rem;}
+        .discount{width:100%;margin-top:0.4rem;}
+        .discount .distitle{
+            width: 100%;
+            line-height: 0.833rem;
+            font-size: 0.4rem;
+            padding-left: 0.533rem;
+            color:#121212;
+            font-weight:normal;
+        }
+        .content{background:white;border-top:0.05rem solid #e0e0e0;}
+        .content li {
+            width: 50%;
+            box-sizing: border-box;
+            border-bottom: 1px solid #e0e0e0;
+            height: 7.71rem;
+            padding:0.333rem 0.15rem 0 0.15rem;
+            float:left;
+        }
+        .content li.right{border-right:1px solid #e0e0e0;}
+        .content li.left{border-left:1px solid #e0e0e0;}
+        .content li .discription{line-height:0.6rem;font-size:0.5333rem;margin-top:0.433rem;}
+        .content li img{width:7.117rem;}
+        .content li .price{line-height:1.3667rem;}
+        .content li .price .dis {
+            float: left;
+            color: #eca68d;
+            font-size: 0.4rem;
+            margin-left: 0.4rem;
+        }
+        .content .pricecon{font-size:0.4rem;float:right;color:#dedede;margin-right:0.667rem;}
+        .content .pricecon i{font-size:0.5333rem;color:#ff3700;}
+        .more {
+            width: 100%;
+            text-align: center;
+            line-height: 1.6rem;
+            font-size: 0.4rem;
+            color: #d5dbdb;
+            background: #fcfcfc;
+        }
+        .more b{margin-left:0.1rem;}
+        /*footer*/
+        .footer {
+            width: 100%;
+            height: 1.5rem;
+            line-height: 1.8rem;
+            border-top: 0.05rem solid #eee;
+            padding-top: 0.3rem;
+            background:#f0f0f0;
+        }
+        .footer ul{width:100%;display:-webkit-box;}
+        .footer li{-webkit-box-flex:1;}
+        .footer .iconF {
+            width: 0.8rem;
+            height: 0.8rem;
+            background: url(img/Ficon1.png) no-repeat;
+            background-size: 0.8rem 0.8rem;
+            display:block;
+            margin:0 auto;
+        }
+        .footer .textF {
+            width:1.5rem;
+            margin:0 auto;
+            font-size: 0.333rem;
+            line-height: 0.667rem;
+            text-align: center;
+            height: 0.667rem;
+            display:block;
+        }
+
+    </style>
+    <script>
+        window.onload=function(){
+            var oH=document.getElementsByTagName('html')[0];
+            oH.style.fontSize=document.documentElement.clientWidth/15+'px';
+            (function(win){
+                win.addEventListener('resize',function(){
+                    oH.style.fontSize=document.documentElement.clientWidth/15+'px';
+                },false);
+            })(window);
+        };
+    </script>
+</head>
+<body>
+    <div id="wrap" class="wd mm">
+        <header id="header" class="header mm clearfix">
+            <span class="band">M</span>
+            <div class="searchbar">
+                <span class="search"></span>
+                <input type="text" name="" id="" class="searchword" placeholder="搜索目的地、景点、帖子">
+            </div>
+        </header>
+        <section id="section">
+            <div class="firstbg">
+                <a href="javascript:;"><img src="img/bg1.png" alt=""></a>
+            </div>
+            <ul class="item clearfix">
+                <li>
+                    <a href="javascript:;" class="icon1"></a>
+                    <a href="javascript:;" class="con1">看攻略</a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="icon1 icon2"></a>
+                    <a href="javascript:;" class="con1">抢折扣</a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="icon1 icon3"></a>
+                    <a href="javascript:;" class="con1">订酒店</a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="icon1 icon4"></a>
+                    <a href="javascript:;" class="con1">我在哪</a>
+                </li>
+            </ul>
+            <div class="treval">
+                <h2 class="trvtitle">旅游推荐</h2>
+                <div class="trevalbg">
+                    <a href="javascript:;">
+                        <img src="img/bg2.png" alt="">
+                    </a>
+                </div>
+                <div class="trevalbg2">
+                    <a href="javascript:;" class="mgr"><img src="img/treval.png" alt=""></a>
+                    <a href="javascript:;"><img src="img/treval.png" alt=""></a>
+                </div>
+            </div>
+            <div class="discount">
+                <h2 class="distitle">折扣游</h2>
+                <ul class="content clearfix">
+                    <li class="right">
+                        <div><a href="javascript:;"><img src="img/content.png" alt=""></a></div>
+                        <p class="discription"><a href="javascript:;">体验全球最长的过山车15天超爽旅游</a></p>
+                        <div class="price">
+                            <span class="dis">6折</span>
+                            <span class="pricecon"><i>21099</i> 元起</span>
+                        </div>
+                    </li>
+                    <li class="left">
+                        <div><a href="javascript:;"><img src="img/content.png" alt=""></a></div>
+                        <p class="discription"><a href="javascript:;">体验全球最长的过山车15天超爽旅游</a></p>
+                        <div class="price">
+                            <span class="dis">6折</span>
+                            <span class="pricecon"><i>21099</i> 元起</span>
+                        </div>
+                    </li>
+                    <li class="right">
+                        <div><a href="javascript:;"><img src="img/content.png" alt=""></a></div>
+                        <p class="discription"><a href="javascript:;">体验全球最长的过山车15天超爽旅游</a></p>
+                        <div class="price">
+                            <span class="dis">6折</span>
+                            <span class="pricecon"><i>21099</i> 元起</span>
+                        </div>
+                    </li>
+                    <li class="left">
+                        <div><a href="javascript:;"><img src="img/content.png" alt=""></a></div>
+                        <p class="discription"><a href="javascript:;">体验全球最长的过山车15天超爽旅游</a></p>
+                        <div class="price">
+                            <span class="dis">6折</span>
+                            <span class="pricecon"><i>21099</i> 元起</span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="more"><a href="javascript:;">查看更多<b>&gt;</b></a></div>
+            </div>
+        </section>
+        <footer class="footer">
+            <ul class="clearfix">
+                <li>
+                    <a href="javascript:;" class="iconF"></a>
+                    <a href="javascript:;" class="textF">推荐</a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="iconF"></a>
+                    <a href="javascript:;" class="textF">目的地</a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="iconF"></a>
+                    <a href="javascript:;" class="textF">帖子</a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="iconF"></a>
+                    <a href="javascript:;" class="textF">我的</a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>

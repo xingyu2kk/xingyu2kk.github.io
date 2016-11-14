@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{margin:0;padding:0;}
+	body {
+		width: 100%;
+		background: #000;
+		text-align:center;
+	}
+	.box {
+		width: 330px;
+		height:200px;
+		position:absolute;
+		top:50%;
+		left:47%;
+		margin:-100px 0 0 -115px;
+	}
+	input {
+		width:80px;
+		height:40px;
+		font-size:24px;
+		margin:20px;
+		cursor:pointer;
+	}
+	ul {
+		overflow: hidden;
+		width: 330px;
+	}
+	ul li {
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		background: red;
+		border-radius: 50%;
+		border: 1px solid red;
+		float: left;
+		margin-right: 15px;
+		list-style: none;
+		text-align: center;
+		color: #fff;
+		font-size: 18px;
+	}
+	.lan {
+		background: blue;
+		border: 1px solid blue;
+	}
+	.title {
+		width: 100%;
+		height: 200px;
+		line-height: 200px;
+		text-align: center;
+		font-size: 42px;
+		color: #fff;
+	}
+	.text_intro {
+		width: 100%;
+		height: 100px;
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		text-align: center;
+		line-height: 100px;
+		font-size: 24px;
+		color: #ccc;
+	}
+</style>
+<script src="jquery-1.7.2.min.js"></script>
+<script>
+	$(function(){
+		var oBtn=$('#btn');
+		var oNum=$('#num');
+		function rnd(n,m){
+			return parseInt(Math.random()*(m-n)+n);
+		}
+		function toDou(n){
+			return n<10?'0'+n:''+n;
+		}
+		function findArr(n,arr){
+			for(var i=0;i<arr.length;i++){
+				if(n==arr[i]){
+					return true;
+				}
+			}
+			return false;
+		}
+		function getNum(){
+			var arr=[];
+			while(arr.length<6){
+				var n=toDou(rnd(1,37));
+				if(findArr(n,arr)==false){
+					arr.push(n);
+				}
+				var m=toDou(rnd(1,15));
+			}
+			arr.sort(function(n,m){
+				return n-m;
+			});
+			var aLi=$('#num li');
+			for(var i=0;i<aLi.length;i++){
+				$(aLi[i]).html(arr[i]);
+				$(aLi[6]).html(m);
+			}
+		}
+		getNum();
+		var timer=null;
+		$(oBtn).click(function(){
+			clearInterval(timer);
+			timer=setInterval(getNum,300);
+			setTimeout(function(){
+				clearInterval(timer);
+			},3000);
+		});
+	});
+</script>
+</head>
+
+<body>
+	<div class="title">JQuery简易选项卡</div>
+	<div class="box">
+		<input type="button" value="点击" id="btn"/>
+		<ul id="num">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li class="lan">7</li>
+		</ul>
+	</div>
+	<p class="text_intro">点击按钮实现切换功能</p>
+</body>
+</html>

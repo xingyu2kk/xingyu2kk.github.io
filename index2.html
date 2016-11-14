@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <link rel="stylesheet" href="css/init.css">
+    <link rel="stylesheet" href="css/proto.css">
+    <!--[if IE]>
+         <script src="js/html5.js"></script>
+     < ![endif]-->
+    <script src="js/common.js"></script>
+    <script src="js/domove.js"></script>
+</head>
+<body>
+    <div class="preload" id="preloader">
+        <div class="preload-son"><img src="img/icon/preloader.gif" alt=""></div>
+    </div>
+    <div class="title">原生项目效果整理</div>
+    <div class="container">
+        <div class="header">
+            <ul class="header-ul clearfix" id="header-ul">
+                <li class="header-li"><a target="_blank" href="index.html">首页</a></li>
+                <li class="header-li"><a target="_blank" href="index2.html">原生</a></li>
+                <li class="header-li"><a target="_blank" href="index3.html">JQuery</a></li>
+                <li class="header-li"><a target="_blank" href="index4.html">HTML5/CSS3</a></li>
+                <li style="border-right:none;" class="header-li"><a target="_blank" href="index5.html">我自己的库</a></li>
+                <li id="moveLi"><a target="_blank" href="index2.html">原生</a></li>
+            </ul>
+        </div>
+        <div class="nav_box">
+            <ul class="nav_ul clearfix">
+                <li><a href="#option_box">选项卡</a></li>
+                <li><a href="#auto_scroll">自定义滚动条</a></li>
+                <li><a href="#link_select">联动全选</a></li>
+                <li><a href="#countdown">倒计时</a></li>
+                <li><a href="#double_ball">双色球</a></li>
+                <li><a href="#up_down">上下移动</a></li>
+                <li><a href="#lazy_load">懒加载</a></li>
+                <li><a href="#waterfall">瀑布流</a></li>
+            </ul>
+        </div>
+        <div class="option_box" id="option_box">
+            <h2 class="option_title">选项卡</h2>
+            <div class="option_bar1" id="option_bar1">
+                <div class="option_bar1_up" id="option_bar1_up">
+                    <ul class="option_bar1_ul" id="option_bar1_ul">
+                        <li><img _src="img/img/1.jpg" alt=""></li>
+                        <li><img _src="img/img/2.jpg" alt=""></li>
+                        <li><img _src="img/img/3.jpg" alt=""></li>
+                        <li><img _src="img/img/4.jpg" alt=""></li>
+                        <li><img _src="img/img/5.jpg" alt=""></li>
+                        <li><img _src="img/img/6.jpg" alt=""></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="option_bar1_down" id="option_bar1_down">
+                        <li class="active"><img _src="img/img/1.jpg" alt=""></li>
+                        <li><img _src="img/img/2.jpg" alt=""></li>
+                        <li><img _src="img/img/3.jpg" alt=""></li>
+                        <li><img _src="img/img/4.jpg" alt=""></li>
+                        <li><img _src="img/img/5.jpg" alt=""></li>
+                        <li style="margin-right:0;"><img _src="img/img/6.jpg" alt=""></li>
+                    </ul>
+                </div>
+                <a href="javascript:;" id="toleft" class="arrow">&lt;</a>
+                <a href="javascript:;" id="toright" class="arrow">&gt;</a>
+            </div>
+            <div class="option_bar2" id="option_bar2">
+                <div class="option_bar2_box">
+                    <ul class="option_bar2_ul" id="option_bar2_ul">
+                        <li><img _src="img/img/1.jpg" alt=""></li>
+                        <li><img _src="img/img/2.jpg" alt=""></li>
+                        <li><img _src="img/img/3.jpg" alt=""></li>
+                        <li><img _src="img/img/4.jpg" alt=""></li>
+                    </ul>
+                    <ul class="option_bar2_bar" id="option_bar2_bar">
+                        <li><span class="active"></span></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                    </ul>
+                </div>
+                <div class="introduce">试试鼠标按下拖拽图片试试</div>
+            </div>
+        </div>
+        <div class="auto_scroll" id="auto_scroll">
+            <h2 class="scroll_title">自定义滚动条</h2>
+            <div class="auto_scroll_box" id="auto_scroll_box">
+                <div class="auto_scroll_left" id="auto_scroll_left">
+                    <p class="scroll_content">Rock N Roll - Avril Lavigne
+                        Let em know that we're still Rock n Roll
+                        让他们知道我们仍在摇滚
+                        I don't care about my makeup
+                        我不在乎我的装扮
+                        I like it better with my jeans all ripped up
+                        我更喜欢我的破洞牛仔裤
+                        Don't know how to keep my mouth shut
+                        不知道怎样才能将我的嘴巴闭上
+                        You say so what (what)
+                        你说 那又怎样
+                        I don' t care if I'm misfit
+                        我不在乎我适不适合
+                        I like it better than the hipster of all shit
+                        总比那些时髦的跟屁虫好些
+                        I am the mother f-cking princess
+                        我就是放荡不羁的公主
+                        You still love me
+                        你始终爱它
+                        Some some how
+                        有些莫名其妙
+                        It's a little different when
+                        会感到有点不同
+                        I'm with you
+                        当我和你在一起时
+                        You know what I really am
+                        你知道真实的我
+                        On the phone
+                        在接电话时
+                        You know how it really goes
+                        你知道真相将如何揭开
+                        Some some way
+                        有一些方式
+                        We'll be getting out of this
+                        我们脱离了这种状况
+                        Time one day
+                        时间一天一天过去
+                        You're the only that I
+                        而你是我唯一
+                        Want with me
+                        现在想要的
+                        You know how the story goes
+                        你知道故事将如何进行
+                        When it's you and me
+                        现在是你我的时间
+                        We don't need no one to tell us who to be
+                        我们不需要任何人告诉我们谁是谁非
+                        We'll keep turning up the radio
+                        我们会不停地调大收音机的声响
+                        Well it's you and I
+                        现在只有你我
+                        Just put up a middle finger to the sky
+                        只需要向天空竖起中指
+                        Let them know we're still rock 'n roll
+                        让他们知道我们仍在摇滚
+                        Rock ‘n roll
+                        摇滚吧
+                        Hey hey hey
+                        嘿嘿嘿
+                        Rock 'n roll
+                        摇滚吧
+                        Hey Hey Hey
+                        嘿嘿嘿
+                        Don't get a bad attitude dude
+                        不需要态度不好的家伙
+                        I'm never going to cover up that tattoo
+                        我永远都不会去掩盖我的纹身
+                        I might have a couple issues
+                        我可能是有些小问题
+                        You say me too (yeah)
+                        你说你也是
+                        Don't care about a reputation
+                        别在乎所谓的名誉
+                        Must be living in the wrong generation
+                        活在这个颠倒的时代里
+                        This is your invitation
+                        这是你的邀请吗
+                        Let's get wasted
+                        让我们挥霍它吧
+                        Some some how
+                        有些莫名其妙
+                        It's a little different when
+                        会感到有点不同
+                        I'm with you
+                        当我和你在一起时
+                        You know what I really am
+                        你知道真实的我
+                        On the phone
+                        在接电话时
+                        You know how the story really goes
+                        你知道真相将如何揭开
+                        When it's you and me
+                        现在是你我的时间
+                        We don't need no one to tell us who to be
+                        我们不需要任何人告诉我们谁是谁非
+                        We'll keep turning up the radio
+                        我们会不停地调大收音机的声响
+                        Well it's you and I
+                        现在只有你我
+                        Just put up a middle finger to the sky
+                        只需要向天空竖起中指
+                        Let them know we're still rock 'n roll
+                        让他们知道我们仍在摇滚
+                        Rock 'n roll
+                        摇滚吧
+                        Hey hey hey
+                        嘿嘿嘿
+                        Rock 'n roll
+                        摇滚吧
+                        Hey Hey Hey
+                        嘿嘿嘿
+                        When it's you and me
+                        现在是你我的时间
+                        We don't need no one to tell us who to be
+                        我们不需要任何人告诉我们谁是谁非
+                        We'll keep turning up the radio
+                        我们会不停地调大收音机的声响
+                        Well it's you and I
+                        现在只有你我
+                        Just put up a middle finger to the sky
+                        只需要向天空竖起中指
+                        Let them know we're still rock 'n roll
+                        让他们知道我们仍在摇滚
+                        When it's you and me
+                        只有我和你
+                        We don't need no one to tell us who to be
+                        我们不需要任何人告诉我们谁是谁非
+                        We'll keep turning up the radio
+                        我们会不停地调大收音机的声响
+                        Well it's you and I
+                        只有我和你
+                        Just put up a middle finger to the sky
+                        只需要向天空竖起中指
+                        Let them know we're still rock 'n roll
+                        让他们知道我们仍在摇滚
+                        Rock 'n roll
+                        摇滚吧
+                        Hey hey hey
+                        嘿嘿嘿
+                        Rock 'n roll
+                        摇滚吧
+                        Hey Hey Hey
+                        嘿嘿嘿 </p>
+                </div>
+                <div class="auto_scroll_right" id="auto_scroll_right">
+                    <span class="scroll_bar" id="scroll_bar"></span>
+                </div>
+            </div>
+        </div>
+        <div class="link_select">
+            <h2 class="link_select_title">联动全选</h2>
+            <div class="link_select_box" id="link_select_box">
+                <div class="link_select_up" id="link_select_up">
+                    <input type="checkbox" name=""> 全选
+                    <input type="button" name="" value="不选" style="width:60px;height:30px;background:#eee;font-size:16px;border-radius:10px;">
+                    <input type="button" name="" value="反选" style="width:60px;height:30px;background:#eee;font-size:16px;border-radius:10px;">
+                </div>
+                <div class="link_select_down" id="link_select_down">
+                    <input type="checkbox" name=""> 喜欢
+                    <input type="checkbox" name=""> 很喜欢
+                    <input type="checkbox" name=""> 超喜欢
+                    <input type="checkbox" name=""> 特别喜欢
+                    <input type="checkbox" name=""> 非常非常喜欢
+                </div>
+            </div>
+        </div>
+        <div class="countdown" id="countdown">
+            <h2 class="countdown_title">倒计时</h2>
+            <div class="time_btn" id="time_btn">重新开始计时</div>
+            <div class="time_container" id="time_container">00:00:59</div>
+            <div class="progress_bar">
+                <span id="progress_bar"></span>
+            </div>
+            <div class="introduce">倒计时进度条</div>
+        </div>
+        <div class="double_ball" id="double_ball">
+            <h2 class="double_ball_title">双色球</h2>
+            <div class="double_con" id="double_con">
+                <div>0</div>
+                <div>0</div>
+                <div>0</div>
+                <div>0</div>
+                <div>0</div>
+                <p>0</p>
+                <p>0</p>
+                <input type="button" id="double_btn" value="摇号" style="width:50px;height:30px;font-size:20px;color:#fff;background:#67b0d1;cursor:pointer;">
+            </div>
+        </div>
+        <div class="up_down" id="up_down">
+            <h2 class="up_down_title">上移下移</h2>
+            <ul class="up_down_ul" id="up_down_ul">
+                <li><a href="javascript:;">上移</a> 01点击上下移动文字 <a href="javascript:;">下移</a></li>
+                <li><a href="javascript:;">上移</a> 02点击上下移动文字 <a href="javascript:;">下移</a></li>
+                <li><a href="javascript:;">上移</a> 03点击上下移动文字 <a href="javascript:;">下移</a></li>
+                <li><a href="javascript:;">上移</a> 04点击上下移动文字 <a href="javascript:;">下移</a></li>
+                <li><a href="javascript:;">上移</a> 05点击上下移动文字 <a href="javascript:;">下移</a></li>
+                <li><a href="javascript:;">上移</a> 06点击上下移动文字 <a href="javascript:;">下移</a></li>
+            </ul>
+        </div>
+        <div class="lazy_load" id="lazy_load">
+            <h2 class="lazy_load_title">图片懒加载</h2>
+            <ul class="lazy_load_ul clearfix">
+                <li><a href="javascript:;"><img _src="img/lazy_load/b1.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b2.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b3.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b4.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b5.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b6.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b7.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b8.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b9.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b10.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b1.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b2.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b3.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b4.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b5.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b6.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b7.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b8.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b9.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b10.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b1.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b2.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b3.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b4.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b5.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b6.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b7.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b8.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b9.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b10.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b1.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b2.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b3.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b4.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b5.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b6.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b7.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b8.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b9.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b10.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b1.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b2.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b3.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b4.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b5.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b6.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b7.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b8.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b9.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b10.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b10.jpg" alt=""></a></li>
+                <li><a href="javascript:;"><img _src="img/lazy_load/b10.jpg" alt=""></a></li>
+            </ul>
+        </div>
+        <div class="waterfall" id="waterfall">
+            <h2 class="waterfall_title">瀑布流</h2>
+            <div class="waterfall_cont clearfix" id="waterfall_cont">
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+    <div class="elastic_box" id="elastic_box" title="可拖动可点击">
+        <span id="elastic_nav">导航</span>
+        <div id="elastic_box_son"></div>
+    </div>
+    <div class="toTop" id="toTop">
+        <span id="toTop_c"></span>
+    </div>
+    <script src="js/proto_effect.js"></script>
+</body>
+</html>

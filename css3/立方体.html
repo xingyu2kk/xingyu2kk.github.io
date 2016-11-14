@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box{width:200px;height:200px;position:relative;margin:200px auto;transform-style:preserve-3d;transform:rotateY(-60deg) rotate(30deg);transition:0.4s all lienar;}
+	#box div{width:100%;height:100%;position:absolute;top:0;left:0;line-height:200px;text-align:center;font-size:50px;color:#fff;opacity:0.4;}
+	.front{background:red;transform:translateZ(100px);}
+	.back{background:aqua;transform:translateZ(-100px);}
+	.top{background:green;transform:translateY(-100px) rotateX(90deg);}
+	.bottom{background:blue;transform:translateY(100px) rotateX(-90deg);}
+	.left{background:yellow;transform:translateX(-100px) rotateY(-90deg);}
+	.right{background:#f96;transform:translateX(100px) rotateY(90deg);}
+	</style>
+	<script>
+	window.onload=function(){
+		var oBox=document.getElementById('box');
+		var x=30;
+		var y=-60;
+		document.onkeydown=function(ev){
+			if(ev.keyCode==37){
+				y-=4;
+			}else if(ev.keyCode==38){
+				x+=4;
+			}else if(ev.keyCode==39){
+				y+=4;
+			}else if(ev.keyCode==40){
+				x-=4;
+			}
+			oBox.style.transform='rotateY('+y+'deg) rotateX('+x+'deg)';
+		};
+		oBox.onmousedown=function(ev){
+			var disX=ev.clientY-x;
+			var disY=ev.clientX-y;
+			document.onmousemove=function(ev){
+				x=disX-ev.clientY;
+				y=ev.clientX-disY;
+				oBox.style.transform='rotateY('+y+'deg) rotate('+x+'deg)';
+			};
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+			};
+			return false;
+		};
+	};
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div class="front">front</div>
+		<div class="back">back</div>
+		<div class="top">top</div>
+		<div class="bottom">bottom</div>
+		<div class="left">left</div>
+		<div class="right">right</div>
+	</div>
+</body>
+</html>

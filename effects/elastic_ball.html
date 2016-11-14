@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin:0;padding:0;}
+	#elastic_box {
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		position: fixed;
+		left: 100px;
+		top: 100px;
+		background:#eee;
+		cursor:pointer;
+		-webkit-box-shadow:0 0 5px #000;
+	}
+	#elastic_box_son {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top:0;
+		left:0;
+		transform:rotate(0deg);
+	}
+	#elastic_nav{
+		position:absolute;
+		top:50%;
+		left:50%;
+		width:40px;
+		height:20px;
+		font-size:20px;
+		text-align:center;
+		margin:-10px 0 0 -20px;
+		z-index:3;
+		color:#666;
+	}
+	#elastic_nav:hover{
+		color:blue;
+	}
+	#elastic_box a {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -25px 0 0 -25px;
+		background:#eee;
+		line-height:50%;
+		text-align:center;
+		font-size:16px;
+		color:#666;
+	}
+	@keyframes move{
+		from{
+			transform:rotate(0deg);
+		}
+		to{
+			transform:rotate(360deg);
+		}
+	}
+	#elastic_box div.active{
+		animation:12s move linear infinite;
+	}
+	</style>
+</head>
+<body>
+		<div class="elastic_box" id="elastic_box">
+			<span id="elastic_nav">导航</span>
+			<div id="elastic_box_son"></div>
+		</div>
+</body>
+<script>
+	window.onload=function(){
+		var oEBox=document.getElementById('elastic_box');
+		var oEson=document.getElementById('elastic_box_son');
+		var oESpn=document.getElementById('elastic_nav');
+		var cH=document.documentElement.clientHeight;
+		var cW=document.documentElement.clientWidth;
+		var l=0;
+		var t=0;
+		oEBox.onmousedown=function(ev){
+			var oEvent=ev||event;
+			var disX=oEvent.clientX-oEBox.offsetLeft;
+			var disY=oEvent.clientY-oEBox.offsetTop;
+			document.onmousemove=function(ev){
+				var oEvent=ev||event;
+				l=oEvent.clientX-disX;
+				t=oEvent.clientY-disY;
+				if(l<=0){
+					l=0;
+				}else if(l>=cW-oEBox.offsetWidth){
+					l=cW-oEBox.offsetWidth;
+				}
+				if(t<=0){
+					t=0;
+				}else if(t>=cH-oEBox.offsetHeight){
+					t=cH-oEBox.offsetHeight;
+				}
+				oEBox.style.left=l+'px';
+				oEBox.style.top=t+'px';
+				return false;
+			};
+			document.onmouseup=function(ev){
+				document.onmousemove=null;
+				document.onmouseup=null;
+			};
+			ev.cancelBublle=true;
+			return false;
+		};
+		/*oESpn.onmouseover=function(){
+			this.style.color='springgreen';
+		};
+		oESpn.onmouseout=function(){
+			this.style.color='#fff';
+		};*/
+		oESpn.onclick=function(ev){
+			var arr=[];
+			var N=8;
+			for(var i=0;i<N;i++){
+				var oA=document.createElement('a');
+				oEson.appendChild(oA);
+				oA.style.transform='rotateZ('+i*360/N+'deg) translateX(100px)';
+			}
+			oEson.classList.add('active');
+			ev.cancelBubble=true;
+			return false;
+		};
+		var aA=oEson.children;
+		document.onclick=function(){
+			oEson.classList.remove('active');
+			for(var i=0;i<aA.length;i++){
+				oEson.removeChild(aA[i]);
+				i--;
+			}
+		};
+	};
+</script>
+</html>

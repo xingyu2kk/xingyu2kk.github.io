@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin:0;padding:0;}
+	html,body{width:100%;background:#000;}
+	#box {
+		width: 700px;
+		height: 400px;
+		background: url(img/1.jpg);
+		position: absolute;
+		top:50%;
+		left:50%;
+		margin:-200px 0 0 -350px;
+	}
+	#box span {
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: url(img/0.jpg);
+		transition: 0.6s all linear;
+	}
+	.title {
+		width: 100%;
+		height: 150px;
+		line-height: 150px;
+		text-align: center;
+		font-size: 42px;
+		color: #fff;
+	}
+	.text_intro {
+		width: 100%;
+		height: 100px;
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		text-align: center;
+		line-height: 100px;
+		font-size: 24px;
+		color: #eee;
+	}
+	</style>
+	<script>
+	function getRnd(n,m){
+		return Math.floor(Math.random()*(m-n)+n);
+	}
+	window.onload=function(){
+		var oBox=document.getElementById('box');
+		var R=4;
+		var C=7;
+		var w=oBox.offsetWidth/C;
+		var h=oBox.offsetHeight/R;
+		for(var r=0;r<R;r++){
+			for(var c=0;c<C;c++){
+				var oS=document.createElement('span');
+				oS.style.width=w+'px';
+				oS.style.height=h+'px';
+				oS.style.top=h*r+'px';
+				oS.style.left=w*c+'px';
+				oS.style.backgroundPosition='-'+w*c+'px -'+h*r+'px';
+				oBox.appendChild(oS);
+			}
+		}
+		var aSpan=oBox.children;
+		var n=0; 
+		var bOk=false;
+		oBox.onclick=function(){
+			if(bOk){
+				return;
+			}
+			bOk=true;
+			n++;
+			for(var i=0;i<aSpan.length;i++){
+				var x=(aSpan[i].offsetWidth/2+aSpan[i].offsetLeft-oBox.offsetWidth/2)*0.6;
+				var y=(aSpan[i].offsetHeight/2+aSpan[i].offsetTop-oBox.offsetHeight/2)*0.6;
+				aSpan[i].style.transition='0.4s all linear';
+				aSpan[i].style.transform='perspective(800px) translateX('+x+'px) translateY('+y+'px) rotateY('+getRnd(-180,180)+'deg) rotateX('+getRnd(-180,180)+'deg) scale(1.4)';
+				aSpan[i].style.opacity=0;
+			}
+			aSpan[0].addEventListener('transitionend',function(){
+				bOk=false;
+				for(var i=0;i<aSpan.length;i++){
+					aSpan[i].style.transition='none';
+					aSpan[i].style.transform='perspective(800px) translateX(0px) translateY(0px) rotateY(0deg) rotateX(0deg) scale(1)';
+					aSpan[i].style.backgroundImage='url(img/'+n%3+'.jpg)';
+					aSpan[i].style.opacity=1;
+				}
+				oBox.style.backgroundImage='url(img/'+(n+1)%3+'.jpg)';
+			},false);
+		};
+	};
+	</script>
+</head>
+<body>
+	<div class="title">爆炸换页</div>
+	<div id="box"></div>
+	<p class="text_intro">鼠标点击图片试试</p>
+</body>
+</html>

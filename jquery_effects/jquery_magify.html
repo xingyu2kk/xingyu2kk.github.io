@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{margin:0;padding:0;}
+	html,body{width:100%;background:#000;}
+	.magnify-pic {
+		width: 190px;
+		height: 220px;
+		position:absolute;
+		top:50%;
+		left:50%;
+		margin:-110px 0 0 -95px;
+		border:1px solid #eee;
+	}
+
+	.glass {
+		width: 76px;
+		height: 88px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: rgba(0, 0, 0, 0.4);
+		display:none;
+	}
+	.mg-right-pic {
+		position: absolute;
+		left: 200px;
+		top: 0;
+		overflow: hidden;
+		border: 1px solid #000;
+		width: 190px;
+		height: 220px;
+		display:none;
+	}
+	.mg-right-pic img {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.title {
+		width: 100%;
+		height: 150px;
+		line-height: 150px;
+		text-align: center;
+		font-size: 42px;
+		color: #fff;
+	}
+	.text_intro {
+		width: 100%;
+		height: 100px;
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		text-align: center;
+		line-height: 100px;
+		font-size: 24px;
+		color: #eee;
+	}
+</style>
+<script src="jquery-1.7.2.min.js"></script>
+
+</head>
+<body>
+	<div class="title">JQuery图片放大镜</div>
+	<div class="magnify-pic" id="box">
+		<span class="glass" id="glass"></span>
+		<img src="images/2.jpg" alt="" class="img1" id="img1">
+		<div class="mg-right-pic" id="mg-right-pic">
+			<img src="images/1.jpg" alt="" class="img2" id="img2">
+		</div>
+	</div>
+	<p class="text_intro">鼠标放入图片滑动</p>
+	<script>
+		$(function(){
+			$('#box').mouseover(function(){
+				$('#glass').show();
+				$('#mg-right-pic').show();
+			});
+			$('#box').mouseout(function(){
+				$('#glass').hide();
+				$('#mg-right-pic').hide();
+			});
+			$('#box').mousemove(function(ev){
+				var l=ev.clientX-$('#box').offset().left-$('#glass').outerWidth()/2;
+				var t=ev.clientY-$('#box').offset().top-$('#glass').outerHeight()/2;
+				if(l<0){
+					l=0;
+				}else if(l>$('#box').outerWidth()-$('#glass').outerWidth()){
+					l=$('#box').outerWidth()-$('#glass').outerWidth();
+				}
+				if(t<0){
+					t=0;
+				}else if(t>$('#box').outerHeight()-$('#glass').outerHeight()){
+					t=$('#box').outerHeight()-$('#glass').outerHeight();
+				}
+				$('#glass').css({'left':l,'top':t});
+				var t2=t*($('#img2').outerHeight()/$('#img1').outerHeight());
+				var l2=l*($('#img2').outerHeight()/$('#img1').outerHeight());
+				$('#img2').css({'left':-l2,'top':-t2});
+			});
+		})
+	</script>
+</body>
+</html>

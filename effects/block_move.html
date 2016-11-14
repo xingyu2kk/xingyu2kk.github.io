@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	html,body {
+		width: 100%;
+		height: 100%;
+		background: #000;
+		overflow: hidden;
+		text-align: center;
+	}
+	input {
+		width: 150px;
+		height: 40px;
+		font-size: 24px;
+		text-align: center;
+		color:royalblue;
+		cursor:pointer;
+		border-radius:5px;
+		position:absolute;
+		top:50%;
+		left:50px;
+		margin:-20px 0 0 -10px;
+	}
+	div {
+		width: 1024px;
+		height: 640px;
+		border: 1px solid #000;
+		background: url(img/img1/1.jpg);
+		position: absolute;
+		top:100px;
+		left:50%;
+		margin:-50px 0 0 -512px;
+	}
+	.text_intro {
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		font-size: 24px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		color:#fff;
+		text-align:center;
+	}
+	</style>
+</head>
+<body>
+	<input type="button" value="点击换页" id="btn1">
+	<div id="div1"></div>
+	<p class="text_intro">点击按钮实现幻灯片换页效果</p>
+</body>
+<script src="js/common.js"></script>
+<script src="js/move.js"></script>
+<script>
+	window.onload=function(){
+		var oDiv=document.getElementById('div1');
+		var oBtn=document.getElementById('btn1');
+		var C=8;
+		var R=5;
+		var W=oDiv.offsetWidth/C;
+		var H=oDiv.offsetHeight/R;
+		for(var i=0;i<R;i++){
+			for(var j=0;j<C;j++){
+				var oSpa=document.createElement('span');
+				oSpa.style.position='absolute';
+				oSpa.style.top=i*H+'px';
+				oSpa.style.left=j*W+'px';
+				oSpa.style.width=W+'px';
+				oSpa.style.height=H+'px';
+				oSpa.style.backgroundImage='url(img/img1/1.jpg)';
+				oSpa.style.backgroundPosition=-j*W+'px -'+i*H+'px';
+				oSpa.c=j;
+				oSpa.r=i;
+				oDiv.appendChild(oSpa);
+			}
+		}
+		var iNow=0;
+		var bFlag=false;
+		var aSpa=oDiv.children;
+		oBtn.onclick=function(){
+			if(bFlag){
+				return;
+			}
+			bFlag=true;
+			iNow++;
+			oDiv.style.backgroundImage='url(img/img1/'+iNow%4+'.jpg)';
+			for(var i=0;i<aSpa.length;i++){
+				(function(index){
+					setTimeout(function(){
+						aSpa[index].style.backgroundImage='url(img/img1/'+(iNow+1)%4+'.jpg)';
+						aSpa[index].style.opacity=0;
+						move(aSpa[index],{'opacity':1},{'complete':function(){
+							if(index==aSpa.length-1){
+								bFlag=false;
+							}
+						}});
+					},(aSpa[index].c+aSpa[index].r)*100);
+				})(i);
+			}
+		};
+	};
+</script>
+</html>

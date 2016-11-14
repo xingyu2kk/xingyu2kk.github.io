@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style>
+#left{ position:absolute; left:0; top:0; width:50%; height:100%; background:red; opacity:0; filter:alpha(opacity:0);}
+#right{ position:absolute; right:0; top:0; width:50%; height:100%; background:#ccc; opacity:0; filter:alpha(opacity:0);}
+a{ cursor:default;}
+body {margin:0;}
+img {width:640px; height:378px; position:absolute; left:50%; top:50%; margin-top:-189px; margin-left:-320px;}
+</style>
+<script>
+window.onload=function(){
+var oLeft=document.getElementById('left');
+var oRight=document.getElementById('right');
+var oImg=document.getElementById('img1');
+var timer=null;
+var count=null;
+     oLeft.onmouseover=function(){
+		 clearInterval(timer);
+		timer=setInterval(function(){
+			count++;
+			if(count==76){
+				count=0;	
+			}
+			oImg.src='img/'+count+'.jpg';	
+		},30);
+	 }; 
+	 oRight.onmouseover=function(){
+		 clearInterval(timer);
+		timer=setInterval(function(){
+			count--;
+			if(count<1){
+				count=76;	
+			}
+			oImg.src='img/'+count+'.jpg';	
+		},30);
+	 };       
+};
+</script>
+</head>
+
+<body>
+<img id="img1" src="img/0.jpg" />
+<a href="javascript:;" id="left"></a>
+<a href="javascript:;" id="right"></a>
+</body>
+</html>

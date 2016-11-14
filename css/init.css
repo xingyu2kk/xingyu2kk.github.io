@@ -1,0 +1,8 @@
+body,div,p,h1,h2,h3,h4,h5,h6,input,textarea,ul,ol,dl,li,dd,dt{margin:0;padding:0;}
+a{text-decoration:none;color:#666;}
+li{list-style:none;}
+img{border:none;border:none;_display:block;}
+input,textarea{border:none;background:none;outline:none;}
+.clearfix:after{content:'';display:block;clear:both;_zoon:1;}
+.fl{float:left;}
+.fr{float:right;}

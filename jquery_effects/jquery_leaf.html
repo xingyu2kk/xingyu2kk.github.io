@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{
+		 margin:0;
+		 padding:0;
+		 list-style:none;
+	}
+	html,body {
+		 width: 100%;
+		 background: #000;
+	}
+	#box{
+		  width:800px;
+		  height:400px;
+		  border:1px solid #000;
+		  position:absolute;
+		  top:50%;
+		  left:50%;
+		  margin:-200px 0 0 -400px;
+		  overflow:hidden;
+	}
+
+	#box li{
+		  width:800px;
+		  height:400px;
+		  position:absolute;
+		  top:0;
+		cursor:pointer;
+   }
+	.title {
+		width: 100%;
+		height: 200px;
+		line-height: 200px;
+		text-align: center;
+		font-size: 42px;
+		color: #fff;
+	}
+	.text_intro {
+		width: 100%;
+		height: 100px;
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		text-align: center;
+		line-height: 100px;
+		font-size: 24px;
+		color: #eee;
+	}
+</style>
+<script src="jquery-1.7.2.min.js"></script>
+<script src="jquery.easing.1.3.js"></script>
+<script>
+$(function(){
+	var oBox=$('#box');
+	var aLi=oBox.children();
+	var w=50;
+	var timer=null;
+	var bOk=false;
+	$('#box li').each(function(index){
+		if(index>=1){$('#box li').eq(index).css({left:
+		$('#box li')[0].offsetWidth-($('#box li').length-index)*w+'px'
+		})};	
+	});
+	 $('#box li').each(function(index){
+		$('#box li').mouseover(function(){
+			var _this=this;
+			timer=setTimeout(function(){
+				if(index<=$(_this).index()){
+					$('#box li').eq(index).stop().animate({left:index*w},{easing:'easeInOutCubic','complete':function(){
+					}});
+				}else{
+					$('#box li').eq(index).stop().animate(
+						{left:$('#box')[0].offsetWidth-($('#box li').length-index)*w},{easing:'easeInOutQuad','complete':function(){
+						}}
+					);
+				}
+			},100);
+		});
+		 $('#box li').mouseout(function(){
+			 clearTimeout(timer);
+		 });
+	 });
+});
+</script>
+</head>
+<body>
+	<div class="title">JQuery简易手风琴</div>
+	<ul id="box">
+		<li style="background:#67b0d1;"></li>
+		<li style="background:springgreen;"></li>
+		<li style="background:aqua;"></li>
+		<li style="background:greenyellow;"></li>
+		<li style="background:yellow;"></li>
+	</ul>
+	<p class="text_intro">鼠标移动到每一个琴键上试试</p>
+</body>
+</html>

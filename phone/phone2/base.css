@@ -1,0 +1,6 @@
+body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dd,dt,li,input,textarea,header,footer,section{margin:0;padding:0;}
+li{list-style:none;}
+img{vertical-align:top;border:none;}
+a{text-decoration:none;color:#000;}
+input,textarea{border:none;background:none;outline:none;}
+.clearfix{content:'';display:block;clear:both;}

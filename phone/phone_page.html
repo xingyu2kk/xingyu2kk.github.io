@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width", initial-scale=1.0, maximum-scale=1.0, user-scalable="0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="swiper/swiper.min.css">
+    <style>
+        html,body{width:100%;height:100%;}
+        html{font-size:40px;text-size-adjust:none;}
+        body{font-size:12px;}
+        .wrap{width:16rem;}
+        /*header*/
+        .wrap .header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index:4;
+        }
+        .download-banner{width:100%;height:1.25rem;background:#000;}
+        .download-banner div{float:left;}
+        .download-banner .download-close{width:0.8rem;height:0.8rem;margin:0.2rem;}
+        .download-banner .download-close img{width:0.8rem;height:0.8rem;}
+        .download-banner .download-logo{width:1rem;height:1rem;}
+        .download-banner .download-logo img{width:1rem;height:1rem;margin:0.125rem;}
+        .download-banner .download-text{width:5rem;height:1rem;margin-left:0.5rem;padding-top:0.25rem;}
+        .download-text span{display:block;color:#eee;}
+        .download-text .upword{font-size:0.35rem;color:#fff;}
+        .download-text .downword{font-size:0.3rem;color:#fff;}
+        .download-banner .download-action {
+            width: 4rem;
+            height: 100%;
+            background: red;
+            font-size: 0.4rem;
+            text-align: center;
+            line-height:1.25rem;
+            float:right;
+        }
+        .download-action a{color:#fff;font-size: 0.4rem;}
+
+        .search{height:1rem;width:100%;background: #b51131;}
+        .search h1{width:1.9rem;height:100%;float:left;}
+        .search h1 a {
+            display:block;
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+            text-indent:-99999px;
+            font-size:0.3rem;
+        }
+        .search .search-bar {
+            width: 12.875rem;
+            height: 0.75rem;
+            background: #fff;
+            margin-top: 0.125rem;
+            border-radius:0.375rem;
+            float:left;
+            overflow:hidden;
+        }
+        .search-bar .serch-icon {
+            width: 0.6rem;
+            height: 0.6rem;
+            float: left;
+            margin: 0.08rem 0 0 0.15rem;
+            background: url(img/search.jpg) no-repeat center;
+            background-size:100% 100%;
+        }
+        .header .log {
+            width: 1.2rem;
+            height: 1rem;
+            text-align: center;
+            float: right;
+            line-height: 1rem;
+            font-size: 0.35rem;
+            color:#fff;
+        }
+        .search-bar .search-word {
+            float: left;
+            height: 100%;
+            width: calc(100% - 1rem);
+            font-size: 0.3rem;
+        }
+        /*section*//*viewport*//*轮播图*/
+        .section{width:100%;position:relative;}
+       .view-port{
+            width: 100%;
+            height: 6.15rem;
+        }
+        .view-port .swiper-slide {
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .view-port .swiper-slide a{width:100%;height:100%;display:block;}
+        .view-port .swiper-slide img{width:100%;height:100%;}
+        .view-port .swiper-button-next:hover{transform:translateX(0.08rem);transition:0.4s all linear;}
+        .view-port .swiper-button-prev:hover{transform:translateX(-0.08rem);transition:0.4s all linear;}
+        .nav-bar{width:100%;}
+        .nav-bar ul{width:100%;overflow:hidden;}
+        .nav-bar ul li{float:left;width:20%;height:3.175rem;background:#f3f3f3;text-align:center;font-size:0.5rem;color:#000;/* line-height:0.6rem; */}
+        .nav-bar ul li span{line-height:0.5rem;}
+        .nav-bar a{display:block;width:2rem;height:2rem;margin:0.4rem auto 0;}
+        .banner-newuser{width:100%;height:9.4rem;}
+        .banner-newuser a{display:block;width:100%;height:100%;background:url(img/banner.png) no-repeat;background-size:100% 100%;}
+        .fastnews-bar{width:100%;height:0.95rem;background:#f3f3f3;padding-top:0.2rem;}
+        .fastnews-bar .fastnews{width:15.2rem;height:0.35rem;background:#fff;margin:0 auto;border-radius:0.1rem;padding:0.2rem;}
+        .fastnews .news-icon{float:left;width:1.7rem;height:0.4rem;background:red;background-size:100% 100%;}
+        .fastnews .news-con{font-size:0.3rem;color:#181818;text-align:center;line-height:0.35rem;padding-left:0.1rem;}
+        .fastnews .news-con b{font-weight:normal;color:#f23030;}
+        .fastnews .news-more{float:right;font-size:0.3rem;padding-left:0.1rem;color:#181818;border-left:1px solid #ececec;}
+        .seckill{width:100%;position:relative;}
+        .seckill-swiper{
+            width: 100%;
+            height: 6.5rem;
+        }
+        /* .swiper-wrapper */
+        .seckill .swiper-slide {
+            /* Center slide text vertically */
+            width:5rem;
+            height:5.625rem;
+            box-sizing:border-box;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .seckill .swiper-slide a{display:block;width:5rem;height:5rem;}
+        .seckill .swiper-slide img{display:block;width:100%;height:100%;background-size:100% 100%;}
+        .seckill-time{height:0.8rem;width:100%;overflow:hidden;position:absolute;top:0;left:0;z-index:2;}
+        .seckill-time .clock {
+            width: 0.8rem;
+            height: 0.8rem;
+            background: url(img/clock.png) no-repeat;
+            background-size: 0.8rem 0.8rem;
+            float:left;
+        }
+        .seckill-time .seckill-word{font-size:0.35rem;color:#ca1327;line-height:0.8rem;float:left;}
+        .seckill-time .time{float:left;height:0.625rem;padding-top:0.175rem;overflow:hidden;padding-left:0.1rem;}
+        .time span {
+            width: 0.225rem;
+            height: 0.45rem;
+            background: #3d3d3d;
+            float: left;
+            line-height: 0.45rem;
+            text-align:center;
+            color:#fff;
+            font-size:0.3rem;
+            border-radius:5px;
+        }
+        .time span.bg-none{background:none;color:#000;}
+        .seckill-time .seckill-more {
+            float: right;
+            line-height: 0.8rem;
+            font-size: 0.3rem;
+            color: #666;
+        }
+        .seckill-time .greaterthan{
+            float: right;
+            line-height: 0.8rem;
+            font-size: 0.3rem;
+            color: #c7c7c7;
+            margin-right:0.25rem;
+        }
+        .superday{width:100%;height:6.5rem;position:relative;background:url(img/superday.png) no-repeat;background-size:100% 6.5rem;}
+        .superday a {
+            width: 4.05rem;
+            height: 0.9rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            line-height: 0.9rem;
+            font-size: 0.6rem;
+            text-align: center;
+            color:#824a1d;
+            background:-webkit-linear-gradient(#fef2ed 70%,#bc988c);
+        }
+        .superday .self{top:5.1rem;left:1.46rem;}
+        .superday .band{top:5.15rem;left:10.65rem;}
+        .goods{width:100%;overflow:hidden;}
+        .goods div{width:50%;height:4.5rem;float:left;border-right: 1px solid #eee;
+            box-sizing: border-box;border-bottom:1px solid #eee;
+        }
+        .goods div a{
+            width:100%;
+            height:100%;
+            display:block;
+        }
+        .goods div a img{
+            width:100%;
+            height:100%;
+        }
+        .life-banner {
+            width: 100%;
+            height: 1.65rem;
+            background: url(img/floor-tit.png) no-repeat;
+            background-size: 100% 100%;
+            text-align:center;
+            font-size:0.75rem;
+            line-height:1.65rem;
+        }
+        .life-banner span {
+            background: -webkit-linear-gradient(top left,#ff4a7d, #ff8502);
+            -webkit-background-clip: text;
+           color:rgba(0,0,0,0);
+            font-weight:bold;
+        }
+        .goods2{width:100%;overflow:hidden;}
+        .goods2 div {
+            width: 25%;
+            border-right: 1px solid #eee;
+            -webkit-box-sizing: border-box;
+            height: 5.15rem;
+            float:left;
+            border-bottom:1px solid #eee;
+        }
+        .goods2 div a{
+            width:100%;
+            height:100%;
+            display:block;
+        }
+        .goods2 div a img{
+            width:100%;
+            height:100%;
+        }
+        .ad-banner{width:calc(100% - 0.4rem);height:3.675rem;background:#f3f3f3;padding:0.2rem;padding-bottom:0;}
+        .ad-banner a {
+            width: 15.6rem;
+            height: 3.675rem;
+            display: block;
+        }
+        .ad-banner a img{width:100%;height:100%;}
+        .enjoy span {
+            background: -webkit-linear-gradient(top left,#9f41fe, #146ffd);
+            -webkit-background-clip: text;
+        }
+        .sony-banner a{
+            display:block;
+            width: 15.6rem;
+            height: 3.675rem;
+        }
+        .sony-banner a img{width:100%;height:100%;}
+        .fecture{width:100%;overflow:hidden;}
+        .fecture .fecture_left {
+            width: 50%;
+            box-sizing: border-box;
+            float: left;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        .fecture_left li {
+            width: 100%;
+            height: 4.9rem;
+            box-sizing: border-box;
+            border-bottom: 1px solid #eee;
+        }
+        .fecture_left li img{width:100%;height:100%;}
+        .fecture .fecture_right {
+            width: 50%;
+            box-sizing: border-box;
+            float: left;
+            border-bottom: 1px solid #eee;
+            overflow:hidden;
+        }
+        .fecture_right li {
+            width: 50%;
+            height: 4.9rem;
+            box-sizing: border-box;
+            float: left;
+            border-bottom: 1px solid #eee;
+            border-right:1px solid #eee;
+        }
+        .fecture_right li img{width:100%;height:100%;}
+        .fecture .fecture_bottom {
+            width: 100%;
+            float: left;
+            overflow:hidden;
+        }
+        .fecture_bottom li {
+            width: 25%;
+            height: 5.15rem;
+            box-sizing: border-box;
+            border-right: 1px solid #eee;
+            float:left;
+        }
+        .fecture_bottom li img{width:100%;height:100%;}
+        .recomend{width:100%;}
+        .recomend .gray-text {
+            width: 100%;
+            height: 1.25rem;
+            background: #f0f2f5;
+            text-align: center;
+            line-height: 1.25rem;
+            font-size:0.35rem;
+        }
+        .recomend ul{width:100%;overflow:hidden;}
+        .recomend ul li{width:50%;box-sizing:border-box;float:left;}
+        .goodshop{width:8rem;border-right:1px solid #eee;border-bottom:1px solid #eee;}
+        .goodshop img{width:100%;height:8rem;}
+        .goodshop .description {
+            display:block;
+            width: 7.75rem;
+            padding-left: 0.1rem;
+            padding-right: 0.1rem;
+            font-size: 0.3rem;
+            /*white-space:nowrap;*/
+            overflow:hidden;
+            text-overflow:ellipsis;
+            height:1rem;
+        }
+        .price{display:block;overflow:hidden;color:#f23030;font-size:0.3rem;padding:0.1rem;}
+        .price .big-price{font-size:0.4rem;}
+        .price .similar {
+            float: right;
+            width: 1.25rem;
+            height: 0.6rem;
+            border: 1px solid #eee;
+            border-radius: 3px;
+            text-align: center;
+            line-height: 0.6rem;
+            color:#686868;
+        }
+        .gray-line{width:100%;height:0.1rem;border-bottom:1px solid #dbdbdb;background:#f8f8f8;}
+        .loadmore {
+            width: 100%;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            font-size: 0.4rem;
+            background: #f8f8f8;
+            color:#686868;
+        }
+        .footer{width:100%;background:#f8f8f8;}
+        .jd-footer-link {
+            width: 50%;
+            margin: 0 auto;
+            padding-top: 0.45rem;
+            padding-bottom: 0.45rem;
+            overflow: hidden;
+        }
+        .gray-line2{width:100%;height:0;border-bottom:1px solid #dbdbdb;}
+        .jd-footer-link li {
+            width: 25%;
+            text-align: center;
+            float: left;
+            box-sizing: border-box;
+            font-size: 0.3rem;
+            line-height: 0.35rem;
+            border-right: 1px solid #d7d7d7;
+            color:#848689;
+        }
+        .jd-footer-link .footer-link-last{border-right:none;}
+        .jd-footer-platform{width:50%;margin:0 auto;overflow:hidden;height:1.475rem;padding-top:0.25rem;}
+        .jd-footer-platform li{width:calc(100%/3);float:left;}
+        .jd-footer-platform li a {
+            display: block;
+            width: 1.1rem;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 0.3rem;
+            background:url(img/footer.png) no-repeat top center;
+            background-size:0.9rem 0.8rem;
+            padding-top:1rem;
+        }
+        .copy-right{height:1.1rem;line-height:1.1rem;text-align:center;font-size:0.3rem;color:#848689;}
+    </style>
+    <script src="swiper/swiper.min.js"></script>
+    <script>
+        (function(win,doc){
+            function change(){
+                doc.documentElement.style.fontSize=doc.documentElement.clientWidth*20/320+'px';
+            }
+            change();
+            win.addEventListener('resize',change,false);
+        })(window,document);
+        /*document.addEventListener('DOMContentLoaded',function(){
+
+         },false);*/
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="download-banner">
+                <div class="download-close"><img src="img/icon-close-banner.png" alt=""></div>
+                <div class="download-logo"><img src="" alt=""></div>
+                <div class="download-text">
+                    <span class="upword">打开APP购物</span>
+                    <span class="downword">新人领红包</span>
+                </div>
+                <div class="download-action">
+                    <a href="javascript:;">立即打开</a>
+                </div>
+            </div>
+
+            <div class="search">
+                <h1><a href="javascript:;">购物</a></h1>
+                <div class="search-bar">
+                    <span class="serch-icon"></span>
+                    <input type="text" name="" id="" placeholder="家纺超极品类日，领券慢499减400！" class="search-word">
+                </div>
+                <input type="button" value="登录" class="log">
+            </div>
+        </div>
+        <div class="section">
+            <div class="swiper-container view-port">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="javascript:;"><img src="img/58082961N12ea963e.jpg!q70.jpg" alt=""></a></div>
+                    <div class="swiper-slide"><a href="javascript:;"><img src="img/580d63c3N0c5cd7eb.jpg" alt=""></a></div>
+                    <div class="swiper-slide"><a href="javascript:;"><img src="img/580d8671N2dde43e0.jpg" alt=""></a></div>
+                    <div class="swiper-slide"><a href="javascript:;"><img src="img/5809cdb9N492b39ff.jpg!q70.jpg" alt=""></a></div>
+                    <div class="swiper-slide"><a href="javascript:;"><img src="img/580e1feeN39080a97.jpg!q70.jpg" alt=""></a></div>
+                    <div class="swiper-slide"><a href="javascript:;"><img src="img/5809fde8N93728e57.jpg!q70.jpg" alt=""></a></div>
+                    <div class="swiper-slide"><a href="javascript:;"><img src="img/580e1109Nc002638c.jpg!q70.jpg" alt=""></a></div>
+                    <div class="swiper-slide"><a href="javascript:;"><img src="img/5809d739N889cd311.jpg!q70.jpg" alt=""></a></div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <div class="nav-bar">
+                <ul>
+                    <li><a href="javascript:;" style="background:url(img/57fdae81Ne7ddbab9.png) no-repeat; background-size:100% 100%;"></a><span>超市</span></li>
+                    <li><a href="javascript:;" style="background:url(img/57d53f16Nf3431cbd.png) no-repeat; background-size:100% 100%;"></a><span>全球购</span></li>
+                    <li><a href="javascript:;" style="background:url(img/57d5407cN0d6adf20.png) no-repeat; background-size:100% 100%;"></a><span>服装城</span></li>
+                    <li><a href="javascript:;" style="background:url(img/57d54122N700d9c1b.png) no-repeat; background-size:100% 100%;"></a><span>生鲜</span></li>
+                    <li><a href="javascript:;" style="background:url(img/57d5418cNb96ca16a.png) no-repeat; background-size:100% 100%;"></a><span>到家</span></li>
+                    <li><a href="javascript:;" style="background:url(img/580eb210N30889c25.png) no-repeat; background-size:100% 100%;"></a><span>充值中心</span></li>
+                    <li><a href="javascript:;" style="background:url(img/58096edbNcd05f66b.png) no-repeat; background-size:100% 100%;"></a><span>金融</span></li>
+                    <li><a href="javascript:;" style="background:url(img/580df6bfN49636d3a.png) no-repeat; background-size:100% 100%;"></a><span>领券</span></li>
+                    <li><a href="javascript:;" style="background:url(img/57d54364Needc47cd.png) no-repeat; background-size:100% 100%;"></a><span>物流中心</span></li>
+                    <li><a href="javascript:;" style="background:url(img/57d543ebN25337ef2.png) no-repeat; background-size:100% 100%;"></a><span>我的关注</span></li>
+                </ul>
+            </div>
+            <div class="banner-newuser">
+                <a href="javascript:;"></a> 
+            </div>
+            <div class="fastnews-bar">
+                <div class="fastnews">
+                    <i class="news-icon"></i>
+                    <span class="news-con"><b>首发</b> 努比亚独家首发</span>
+                    <a href="javascript:;" class="news-more">更多</a>
+                </div>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded',function(){
+                    var aSpan=document.querySelectorAll('.seckill-time .time .count-down');
+                    var oDate=new Date();
+                    oDate.setDate(oDate.getDate()+1);
+                    oDate.setHours(0,0,0);
+                    var t1=oDate.getTime();
+                    function toDou(n){
+                        return n<10?'0'+n:''+n;
+                    }
+                    var timer=null;
+                    function getT(){
+                        var oNewDate=new Date();
+                        var t2=oNewDate.getTime();
+                        var total=Math.floor((t1-t2)/1000);
+                        var h=Math.floor(total/3600);
+                        total=total%3600;
+                        var m=Math.floor(total/60);
+                        var s=total%60;
+                        var str=toDou(h)+toDou(m)+toDou(s);
+                        for(var i=0;i<str.length;i++){
+                            aSpan[i].innerHTML=str.charAt(i);
+                        }
+                        if(str=='000000'){
+                            clearInterval(timer);
+                        }
+                    }
+                    getT();
+                    timer=setInterval(getT,1000);
+                },false);
+            </script>
+            <div class="seckill">
+                <div class="seckill-time">
+                    <span class="clock"></span>
+                    <span class="seckill-word">秒杀</span>
+                    <div class="time">
+                        <span class="count-down">0</span>
+                        <span class="count-down">0</span>
+                        <span class="bg-none">:</span>
+                        <span class="count-down">0</span>
+                        <span class="count-down">0</span>
+                        <span class="bg-none">:</span>
+                        <span class="count-down">0</span>
+                        <span class="count-down">0</span>
+                    </div>
+                    <span class="greaterthan"> &gt;</span>
+                    <a class="seckill-more" href="javascript:;">更多秒杀</a>
+                </div>
+                <div class="swiper-container seckill-swiper">
+                    <ul class="swiper-wrapper">
+                        <li class="swiper-slide"><a href="javascript:;"><img src="img/57c3a78fN72f904e9.jpg!q70.jpg" alt=""></a></li>
+                        <li class="swiper-slide"><a href="javascript:;"><img src="img/58043e7dNeedd0325.jpg!q70.jpg" alt=""></a></li>
+                        <li class="swiper-slide"><a href="javascript:;"><img src="img/57ad56cdNb5a84599.jpg!q70.jpg" alt=""></a></li>
+                        <li class="swiper-slide"><a href="javascript:;"><img src="img/57a1bed4Neebadbe8.jpg!q70.jpg" alt=""></a></li>
+                        <li class="swiper-slide"><a href="javascript:;"><img src="img/5805977eN05bf01da.jpg!q70.jpg" alt=""></a></li>
+                        <li class="swiper-slide"><a href="javascript:;"><img src="img/57c3a78fN72f904e9.jpg!q70.jpg" alt=""></a></li>
+                        <li class="swiper-slide"><a href="javascript:;"><img src="img/57e8c5dfN0b9dfe14.jpg!q70.jpg" alt=""></a></li>
+                    </ul>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="superday">
+                <a class="self" href="javascript:;">自营会场&gt;</a>
+                <a class="band" href="javascript:;">品牌特卖&gt;</a>
+            </div>
+            <div class="goods">
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+            </div>
+            <div class="life-banner">
+                <span>爱/生/活</span>
+            </div>
+            <div class="goods">
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+            </div>
+            <div class="goods2">
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+            </div>
+            <div class="ad-banner">
+                <a href="javascript:;"><img src="img/leshi.png" alt=""></a>
+            </div>
+            <div class="life-banner enjoy">
+                <span>享/品/质</span>
+            </div>
+            <div class="goods">
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+            </div>
+            <div class="ad-banner sony-banner">
+                <a href="javascript:;"><img src="img/sony.png" alt=""></a>
+            </div>
+            <div class="life-banner enjoy">
+                <span>购/特/色</span>
+            </div>
+            <div class="fecture">
+                <ul class="fecture_left">
+                    <li><a href="javascript:;"><img src="img/watch.png" alt=""></a></li>
+                    <li><a href="javascript:;"><img src="img/watch.png" alt=""></a></li>
+                </ul>
+                <ul class="fecture_right">
+                    <li><a href="javascript:;"><img src="img/zhch.png" alt=""></a></li>
+                    <li><a href="javascript:;"><img src="img/zhch.png" alt=""></a></li>
+                    <li><a href="javascript:;"><img src="img/zhch.png" alt=""></a></li>
+                    <li><a href="javascript:;"><img src="img/zhch.png" alt=""></a></li>
+                </ul>
+                <ul class="fecture_bottom">
+                    <li><a href="javascript:;"><img src="img/car.jpg" alt=""></a></li>
+                    <li><a href="javascript:;"><img src="img/car.jpg" alt=""></a></li>
+                    <li><a href="javascript:;"><img src="img/car.jpg" alt=""></a></li>
+                    <li><a href="javascript:;"><img src="img/car.jpg" alt=""></a></li>
+                </ul>
+            </div>
+            <div class="ad-banner">
+                <a href="javascript:;"><img src="img/sony.png"" alt=""></a>
+            </div>
+            <div class="life-banner enjoy">
+                <span>逛/商/场</span>
+            </div>
+            <div class="goods market">
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+            </div>
+            <div class="goods2 market">
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/dog.png" alt=""></a></div>
+            </div>
+            <div class="ad-banner">
+                <a href="javascript:;"><img src="img/sony.png"" alt=""></a>
+            </div>
+            <div class="life-banner enjoy">
+                <span>好 店</span>
+            </div>
+            <div class="goods market">
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+                <div><a href="javascript:;"><img src="img/phone.png" alt=""></a></div>
+            </div>
+            <div class="recomend">
+                <div class="gray-text">为您推荐</div>
+                <ul>
+                    <li class="bdr-r">
+                        <a href="javascript:;">
+                            <div class="goodshop">
+                                <img src="img/phone1.png" alt="">
+                                <span class="description">舍道 休闲鞋男鞋秋季新款男士牛皮商务增高休闲鞋时尚板鞋加绒棉鞋子系带大码皮鞋S-9830 S-9830黑色 </span>
+                                <span class="price">
+                                    ￥<span class="big-price">148.</span><span class="small-price">00</span>
+                                    <span class="similar">看相似</span>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bdr-r">
+                        <a href="javascript:;">
+                            <div class="goodshop">
+                                <img src="img/phone1.png" alt="">
+                                <span class="description">舍道 休闲鞋男鞋秋季新款男士牛皮商务增高休闲鞋时尚板鞋加绒棉鞋子系带大码皮鞋S-9830 S-9830黑色 </span>
+                                <span class="price">
+                                    ￥<span class="big-price">148.</span><span class="small-price">00</span>
+                                    <span class="similar">看相似</span>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bdr-r">
+                        <a href="javascript:;">
+                            <div class="goodshop">
+                                <img src="img/phone1.png" alt="">
+                                <span class="description">舍道 休闲鞋男鞋秋季新款男士牛皮商务增高休闲鞋时尚板鞋加绒棉鞋子系带大码皮鞋S-9830 S-9830黑色 </span>
+                                <span class="price">
+                                    ￥<span class="big-price">148.</span><span class="small-price">00</span>
+                                    <span class="similar">看相似</span>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bdr-r">
+                        <a href="javascript:;">
+                            <div class="goodshop">
+                                <img src="img/phone1.png" alt="">
+                                <span class="description">舍道 休闲鞋男鞋秋季新款男士牛皮商务增高休闲鞋时尚板鞋加绒棉鞋子系带大码皮鞋S-9830 S-9830黑色 </span>
+                                <span class="price">
+                                    ￥<span class="big-price">148.</span><span class="small-price">00</span>
+                                    <span class="similar">看相似</span>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bdr-r">
+                        <a href="javascript:;">
+                            <div class="goodshop">
+                                <img src="img/phone1.png" alt="">
+                                <span class="description">舍道 休闲鞋男鞋秋季新款男士牛皮商务增高休闲鞋时尚板鞋加绒棉鞋子系带大码皮鞋S-9830 S-9830黑色 </span>
+                                <span class="price">
+                                    ￥<span class="big-price">148.</span><span class="small-price">00</span>
+                                    <span class="similar">看相似</span>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="bdr-r">
+                        <a href="javascript:;">
+                            <div class="goodshop">
+                                <img src="img/phone1.png" alt="">
+                                <span class="description">舍道 休闲鞋男鞋秋季新款男士牛皮商务增高休闲鞋时尚板鞋加绒棉鞋子系带大码皮鞋S-9830 S-9830黑色 </span>
+                                <span class="price">
+                                    ￥<span class="big-price">148.</span><span class="small-price">00</span>
+                                    <span class="similar">看相似</span>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="gray-line"></div>
+                <div class="loadmore">
+                    <a href="javascript:;">点击加载更多</a>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="gray-line2"></div>
+            <ul  class="jd-footer-link">
+                <li><a href="javascript:;">登录</a></li>
+                <li><a href="javascript:;">注册</a></li>
+                <li><a href="javascript:;">反馈</a></li>
+                <li class="footer-link-last"><a href="javascript:;">回到顶部</a></li>
+            </ul>
+            <div class="gray-line2"></div>
+            <ul class="jd-footer-platform">
+                <li>
+                    <a href="javascript:;">客户端</a>
+                </li>
+                <li>
+                    <a href="javascript:;">触屏版</a>
+                </li>
+                <li>
+                    <a href="javascript:;">电脑版</a>
+                </li>
+            </ul>
+            <div class="gray-line2"></div>
+            <div class="copy-right">Copyright @ 2004-2016 12345678.com 版权所有</div>
+        </footer>
+    </div>
+    <script>
+        var swiper = new Swiper('.view-port', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            /*spaceBetween: 30,*/
+            autoplay:3000,
+            loop:true
+        });
+        var swiper2 = new Swiper('.seckill-swiper', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 3,
+        paginationClickable: true,
+        /*spaceBetween: 30,*/
+        freeMode: true,
+        loop:true
+    });
+    </script>
+</body>
+</html>

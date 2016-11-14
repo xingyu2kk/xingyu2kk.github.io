@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style> 
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+        width:100%;
+        height:100%;
+        background: #000;
+        font-size: 12px;
+    }
+    .slider {
+        line-height: 36px;
+        width: 700px;
+        color: green;
+        margin: 100px auto;
+        background: #010e16;
+    }
+    .slider dt {
+        background: #ccc;
+        padding-left: 30px;
+        cursor: pointer;
+        overflow: hidden;
+        border-bottom: 1px solid #fff;
+        height: 36px;
+        line-height: 36px;
+    }
+    .slider dt.slider_open {
+        background: #707070;
+    }
+    .slider dd {
+        display: none;
+        background: #f1f1ea;
+        height: 90px;
+        border-bottom: 1px dashed #fafafa;
+        overflow: hidden;
+    }
+    .slider dd p {
+        padding: 10px 20px;
+        overflow: hidden;
+    }
+    .title {
+        width: 100%;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        font-size: 42px;
+        color: #fff;
+    }
+    .text_intro {
+        width: 100%;
+        height: 100px;
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        text-align: center;
+        line-height: 100px;
+        font-size: 24px;
+        color: #eee;
+    }
+</style>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script> 
+    $(function(){
+        var flag = 0;
+        var $dt = $('.slider dt');
+        var $dd = $('.slider dd');
+
+        $dd.eq(0).show();
+        $dt.eq(0).css('cursor','default');
+
+        $dt.click(function(){
+            if($dt.index(this) == flag) return false;
+            flag = $dt.index(this);
+            $dd.not($dd.eq(flag)).slideUp();
+            $dd.eq(flag).slideDown();
+            $dt.eq(flag).css('cursor','default').addClass('slider_open');
+            $dt.not($dt.eq(flag)).css('cursor','pointer').removeClass('slider_open');
+        });
+    });
+</script> 
+</head> 
+<body>
+    <div class="title">JQuery手风琴下拉菜单</div>
+    <dl class="slider">
+        <dt class="slider_open">赵本山，央视春晚</dt>
+        <dd><p>央视春晚台柱子赵本山在2011年央视春晚演出后，不得不接受紧急治疗。从个体人性角度祝愿这老爷子健康长寿。但诺将其身体状况作为一种文化隐喻，它却预示着CCTV洗脑愚乐文化正面临无可奈何花落去寿终正襟的命运。</p></dd>
+        <dt>支持打拐</dt>
+        <dd><p>据媒体报道，全国政协委员濮存昕也表示对打拐的支持。他建议全国公安系统应尽快建立起一支专业的打拐队伍，各地公安机关应当设立专门的打拐机构，配备必要的编制和专项经费。</p></dd>
+        <dt>爱的真言</dt>
+        <dd><p>我曾经喜欢八八，坚定只有八八才能给川儿幸福、只是最近几集，你让我情何以堪？感动，心疼，纠结，真的是不悲不喜了！现在我的心情。。很难过、不知道应该选择八八还是四四呢？</p></dd>
+        <dt>注意保重身体</dt>
+        <dd><p>还头痛吗？如果不是生病引起的头痛,我一般会听听音乐,自己喜欢的音乐,用心做自己的事固然是对的,但不要忽略自己的身体。</p></dd>
+    </dl>
+    <p class="text_intro">试试点击每一栏标题试试</p>
+</body> 
+</html>
+

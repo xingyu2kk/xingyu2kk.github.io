@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;list-style:none;}
+        html,body{width:100%;height:100%;background:#000;overflow:hidden;}
+        .surround-pic {
+            width: 133px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -100px 0 0 -67px;
+            border: 1px solid #000;
+
+        }
+        .surround-ul {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /*background:#fff;*/
+            transform:rotateX(-15deg);
+            transform-style: preserve-3d;
+        }
+        .surround-li {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius:12px;
+            box-shadow:0 0 12px #fff;
+            -webkit-box-reflect:below 5px -webkit-linear-gradient(rgba(0,0,0,0) 40% ,rgba(0,0,0,0.4));
+        }
+        .title {
+            width: 100%;
+            height: 150px;
+            line-height: 150px;
+            text-align: center;
+            font-size: 42px;
+            color: #eee;
+        }
+        .text_intro {
+            width: 100%;
+            height: 100px;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            text-align: center;
+            line-height: 100px;
+            font-size: 24px;
+            color: #eee;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oSrdUl=document.querySelector('.surround-pic .surround-ul');
+            var N=11;
+            var y=0;
+            var x=-15;
+            for(var i=0;i<N;i++){
+                var oLi=document.createElement('li');
+                oLi.classList.add('surround-li');
+                oLi.style.backgroundImage='url(img/img/'+(i+1)+'.jpg)';
+                oLi.style.backgroundSize='100% 100%';
+                (function(index,oLi){
+                    setTimeout(function(){
+                        var d=360*index/N;
+                        oLi.style.transition='0.4s all linear '+((N-index)*200)+'ms';
+                        oLi.style.transform='rotateY('+d+'deg) translateZ(300px)';
+                        var scale=Math.abs(Math.abs(d)-180)/180;
+                        if(scale<0.3){
+                            scale=0.3;
+                        }
+                        oLi.style.opacity=scale;
+                    },0);
+                })(i,oLi);
+                oSrdUl.appendChild(oLi);
+            }
+            var aLi=oSrdUl.children;
+            aLi[0].addEventListener('transitionend',function(){
+                document.onmousedown=function(ev){
+                    var disY=ev.clientX-y;
+                    var disX=ev.clientY-x;
+                    document.onmousemove=function(ev){
+                        y=(ev.clientX-disY)/3;
+                        x=(disX-ev.clientY)/2;
+                        for(var i=0;i<N;i++){
+                            var d=360*i/N;
+                            aLi[i].style.transition='none';
+                            aLi[i].style.transform='rotateY('+(d+y)+'deg) translateZ(300px)';
+                            var scale=Math.abs(Math.abs(d+y)-180)/180;
+                            if(scale<0.3){
+                                scale=0.3;
+                            }
+                            aLi[i].style.opacity=scale;
+                        }
+                        oSrdUl.style.transform='rotateX('+x+'deg)';
+                    };
+                    document.onmouseup=function(){
+                        document.onmousemove=null;
+                        document.onmouseup=null;
+                    };
+                    ev.preventDefault();
+                };
+            },false);
+        };
+    </script>
+</head>
+<body>
+    <div class="title">3D图片环</div>
+    <div class="surround-pic">
+        <ul class="surround-ul">
+        </ul>
+    </div>
+    <p class="text_intro">鼠标按下拖动试试</p>
+</body>
+</html>
