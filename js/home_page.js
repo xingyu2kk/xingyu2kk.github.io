@@ -5,8 +5,9 @@ window.onload=function(){
     (function(){
         var oPreload=document.getElementById('preloader');
         //oPreload.style.opacity=0;
-        domove(oPreload,{'opacity':0},{'duration':500,'easing':Tween.Linear});
-        oPreload.style.display='none';
+        domove(oPreload,{'opacity':0},{'duration':500,'easing':Tween.Linear,'complete':function(){
+            oPreload.style.display='none';
+        }});
     })();
     /*header_li*/
     (function(){

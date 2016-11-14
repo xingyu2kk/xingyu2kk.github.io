@@ -30,7 +30,7 @@ html,body {
 /*container*/
 /*header*/
 .container {
-    width: 1024px;
+    width: 1020px;
     margin: 0 auto;
 }
 .container .header {
@@ -47,7 +47,7 @@ html,body {
     behavior: url(js/pie.htc/PIE.htc);
 }
 .header-ul {
-    width: 100%;
+    width: 1020px;
     height: 100%;
     position:relative;
 }
@@ -55,7 +55,6 @@ html,body {
     float: left;
     width: 203px;
     height: 100%;
-    box-sizing:border-box;
     border-right:1px solid #eee;
     position:relative;
 }

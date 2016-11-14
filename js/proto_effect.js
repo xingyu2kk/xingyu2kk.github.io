@@ -3,8 +3,9 @@
  */
 addEvent(window,'load',function(){
     var oPreload=document.getElementById('preloader');
-    domove(oPreload,{'opacity':0},{'duration':500,'easing':Tween.Linear});
-    oPreload.style.display='none';
+    domove(oPreload,{'opacity':0},{'duration':500,'easing':Tween.Linear,'complete':function(){
+        oPreload.style.display='none';
+    }});
     alert('如有效果不佳，请使用更高级的浏览器试试，给您造成的不便请见谅！');
     /*header_li move*/
     (function(){
@@ -323,64 +324,6 @@ addEvent(window,'load',function(){
             return false;
         });
     })();
-    /*link_select*/
-    (function(){
-        var oSel=document.getElementById('link_select_up');
-        var aSelOp=oSel.children;
-        var oSopt=document.getElementById('link_select_down');
-        var aSopt=oSopt.children;
-        var n=0;
-        aSelOp[0].onclick=function(){
-            if(this.checked==true){
-                for(var i=0;i<aSopt.length;i++){
-                    aSopt[i].checked=true;
-                }
-                n=aSopt.length;
-            }else{
-                for(var i=0;i<aSopt.length;i++){
-                    aSopt[i].checked=false;
-                }
-                n=0;
-            }
-        };
-        aSelOp[1].onclick=function(){
-            for(var i=0;i<aSopt.length;i++){
-                aSopt[i].checked=false;
-            }
-            n=0;
-            aSelOp[0].checked=false;
-        };
-        aSelOp[2].onclick=function(){
-            for(var i=0;i<aSopt.length;i++){
-                if(aSopt[i].checked==true){
-                    aSopt[i].checked=false;
-                    n--;
-                }else{
-                    aSopt[i].checked=true;
-                    n++;
-                }
-            }
-            if(n==aSopt.length){
-                aSelOp[0].checked=true;
-            }else{
-                aSelOp[0].checked=false;
-            }
-        };
-        for(var i=0;i<aSopt.length;i++){
-            aSopt[i].onclick=function(){
-                if(this.checked==true){
-                    n++;
-                }else{
-                    n--;
-                }
-                if(n==aSopt.length){
-                    aSelOp[0].checked=true;
-                }else{
-                    aSelOp[0].checked=false;
-                }
-            };
-        }
-    })();
     /*countdown*/
     (function(){
         var oTcon=document.getElementById('time_container');
@@ -500,7 +443,8 @@ addEvent(window,'load',function(){
     })();
     /*lazy_load*/
     (function(){
-        var aLLImg=document.getElementsByTagName('img');
+        var oLazy=document.getElementById('lazy_load');
+        var aLLImg=oLazy.getElementsByTagName('img');
         addEvent(window,'scroll',lazyLoad);
         addEvent(window,'resize',lazyLoad);
         function lazyLoad(){

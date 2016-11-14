@@ -11,20 +11,8 @@
      < ![endif]-->
     <script src="js/common.js"></script>
     <script src="js/domove.js"></script>
-    <script src="js/jsonp.js"></script>
-
 </head>
 <body>
-<!--
-<div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
-    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
--->
     <div class="preload" id="preloader">
         <div class="preload-son"><img src="img/icon/preloader.gif" alt=""></div>
     </div>
@@ -57,22 +45,22 @@
             <div class="option_bar1" id="option_bar1">
                 <div class="option_bar1_up" id="option_bar1_up">
                     <ul class="option_bar1_ul" id="option_bar1_ul">
-                        <li><img src="img/img/1.jpg" alt=""></li>
-                        <li><img src="img/img/2.jpg" alt=""></li>
-                        <li><img src="img/img/3.jpg" alt=""></li>
-                        <li><img src="img/img/4.jpg" alt=""></li>
-                        <li><img src="img/img/5.jpg" alt=""></li>
-                        <li><img src="img/img/6.jpg" alt=""></li>
+                        <li><img _src="img/img/1.jpg" alt=""></li>
+                        <li><img _src="img/img/2.jpg" alt=""></li>
+                        <li><img _src="img/img/3.jpg" alt=""></li>
+                        <li><img _src="img/img/4.jpg" alt=""></li>
+                        <li><img _src="img/img/5.jpg" alt=""></li>
+                        <li><img _src="img/img/6.jpg" alt=""></li>
                     </ul>
                 </div>
                 <div>
                     <ul class="option_bar1_down" id="option_bar1_down">
-                        <li class="active"><img src="img/img/1.jpg" alt=""></li>
-                        <li><img src="img/img/2.jpg" alt=""></li>
-                        <li><img src="img/img/3.jpg" alt=""></li>
-                        <li><img src="img/img/4.jpg" alt=""></li>
-                        <li><img src="img/img/5.jpg" alt=""></li>
-                        <li style="margin-right:0;"><img src="img/img/6.jpg" alt=""></li>
+                        <li class="active"><img _src="img/img/1.jpg" alt=""></li>
+                        <li><img _src="img/img/2.jpg" alt=""></li>
+                        <li><img _src="img/img/3.jpg" alt=""></li>
+                        <li><img _src="img/img/4.jpg" alt=""></li>
+                        <li><img _src="img/img/5.jpg" alt=""></li>
+                        <li style="margin-right:0;"><img _src="img/img/6.jpg" alt=""></li>
                     </ul>
                 </div>
                 <a href="javascript:;" id="toleft" class="arrow">&lt;</a>
@@ -81,10 +69,10 @@
             <div class="option_bar2" id="option_bar2">
                 <div class="option_bar2_box">
                     <ul class="option_bar2_ul" id="option_bar2_ul">
-                        <li><img src="img/img/1.jpg" alt=""></li>
-                        <li><img src="img/img/2.jpg" alt=""></li>
-                        <li><img src="img/img/3.jpg" alt=""></li>
-                        <li><img src="img/img/4.jpg" alt=""></li>
+                        <li><img _src="img/img/1.jpg" alt=""></li>
+                        <li><img _src="img/img/2.jpg" alt=""></li>
+                        <li><img _src="img/img/3.jpg" alt=""></li>
+                        <li><img _src="img/img/4.jpg" alt=""></li>
                     </ul>
                     <ul class="option_bar2_bar" id="option_bar2_bar">
                         <li><span class="active"></span></li>
@@ -249,44 +237,23 @@
                 </div>
             </div>
         </div>
-        <div class="number_search" id="number_search">
-            <h2 class="number_search_title">号码归属地查询</h2>
-            <div>
-                <input type="text" name="" id="txt1" placeholder="请输入您要查询的号码">
-                <input type="button" value="查询" id="btn1">
-                <input type="reset" value="重置" id="reset"><br><br>
-                <textarea name="" id="txa" cols="30" rows="10"></textarea>
+        <div class="link_select">
+            <h2 class="link_select_title">联动全选</h2>
+            <div class="link_select_box" id="link_select_box">
+                <div class="link_select_up" id="link_select_up">
+                    <input type="checkbox" name=""> 全选
+                    <input type="button" name="" value="不选" style="width:60px;height:30px;background:#eee;font-size:16px;border-radius:10px;">
+                    <input type="button" name="" value="反选" style="width:60px;height:30px;background:#eee;font-size:16px;border-radius:10px;">
+                </div>
+                <div class="link_select_down" id="link_select_down">
+                    <input type="checkbox" name=""> 喜欢
+                    <input type="checkbox" name=""> 很喜欢
+                    <input type="checkbox" name=""> 超喜欢
+                    <input type="checkbox" name=""> 特别喜欢
+                    <input type="checkbox" name=""> 非常非常喜欢
+                </div>
             </div>
         </div>
-        <script>
-            (function(){
-                var oT1=document.getElementById('txt1');
-                var oBtn=document.getElementById('btn1');
-                var oT2=document.getElementById('txa');
-                var oRes=document.getElementById('reset');
-                oBtn.onclick=function(){
-                    jsonp({
-                        url:'https://tcc.taobao.com/cc/json/mobile_tel_segment.htm',
-                        data:{
-                            tel:oT1.value
-                        },
-                        cbName:'callback',
-                        success:function(json){
-                            console.log(json);
-                            var str='';
-                            for(name in json){
-                                str=str+name+':'+json[name]+'\n';
-                            }
-                            oT2.value=str;
-                        }
-                    });
-                };
-                oRes.onclick=function(){
-                    oT1.value='';
-                    oT2.value='';
-                };
-            })();
-        </script>
         <div class="countdown" id="countdown">
             <h2 class="countdown_title">倒计时</h2>
             <div class="time_btn" id="time_btn">重新开始计时</div>
@@ -395,15 +362,5 @@
         <span id="toTop_c"></span>
     </div>
     <script src="js/proto_effect.js"></script>
-    <script type="text/javascript" src="http://s.shareto.com.cn/js/shareto_float.js#color=0&align=right&move=1" charset="utf-8"></script>
-   <!-- <div class="bdsharebuttonbox">
-        <a href="#" class="bds_more" data-cmd="more"></a>
-        <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-        <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
-        <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
-        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
-    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
--->
 </body>
 </html>

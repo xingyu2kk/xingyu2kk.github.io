@@ -1,0 +1,221 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ajax留言板</title>
+<link href="style/weibo.css" rel="stylesheet" type="text/css" />
+<script src="ajax.js"></script>
+<script src="cookie.js"></script>
+<script>
+window.onload = function(){
+	var oSendBtn = document.getElementById('sendBtn');
+	var oT = document.getElementById('tijiaoText');	
+	var oM = document.getElementById('messList');
+	var oPage = document.getElementById('page');
+	var iNow =1;
+	var url = 'weibo.php';
+	function toDou(n){
+		return n<10?'0'+n:''+n;
+	}
+	function getCnTime(s){
+		var oDate = new Date(s*1000);
+		return oDate.getFullYear()+'-'+toDou(oDate.getMonth()+1)+'-'+toDou(oDate.getDate())+' '+toDou(oDate.getHours())+':'+toDou(oDate.getMinutes())+':'+toDou(oDate.getSeconds());
+	}	
+	//发表微博留言
+	oSendBtn.onclick = function(){
+		ajax({
+			url:url,
+			data:{
+				act:'add',
+				content:oT.value
+			},
+			succ:function(str){
+				var json = eval('('+str+')');
+				//数据处理
+				if(!json.error){
+					//id,content,time,acc,ref
+					var oDiv = createReply(json.id,oT.value,json.time,0,0);
+					if(oM.children.length == 0){
+						oM.appendChild(oDiv);
+					}else{
+						oM.insertBefore(oDiv,oM.children[0]);
+					}
+					
+					if(oM.children.length>6){
+						oM.removeChild(oM.children[oM.children.length-1]);
+					}
+					get_page_count();
+					oT.value = '';
+
+				}else{
+					alert('发表留言失败');	
+				}
+			}	
+		});	
+	};
+	//创建一条留言
+	function createReply(id,content,time,acc,ref){
+		var oDiv = document.createElement('div');
+		oDiv.className = 'reply';
+		var str = 
+		'<p class="replyContent">'+content+'</p>'+
+		'<p class="operation">'+
+		'<span class="replyTime">'+getCnTime(time)+'</span>'+
+		'<span class="handle">'+
+		'<a href="javascript:;" class="top">'+acc+'</a>'+
+		'<a href="javascript:;" class="down_icon">'+ref+'</a>'+
+		'<a href="javascript:;" class="cut">删除</a>'+
+		'</span>'+
+		'</p>';
+		oDiv.innerHTML = str;
+		//删除功能
+		var oDel = oDiv.getElementsByTagName('a')[2];
+		oDel.onclick = function(){
+			var result = confirm('亲，您要删除吗');
+			if(result){
+				ajax({
+					url:url,
+					data:{
+						act:'del',
+						id:id
+					},
+					succ:function(str){
+						var json = eval('('+str+')');
+						if(!json.error){
+							alert('删除成功');
+							getReply(iNow);
+							get_page_count();
+						}
+					}	
+				});
+			}
+		};
+		
+		//顶
+		var oAcc = oDiv.getElementsByTagName('a')[0];
+		oAcc.onclick = function(){
+			if(!getCookie('Acc'+id)){
+				ajax({
+				url:url,
+				data:{
+					act:'acc',
+					id:id
+				},
+				succ:function(str){
+					var json = eval('('+str+')');
+					if(!json.error){
+						setCookie('Acc'+id,1,1);
+						oAcc.innerHTML = parseInt(oAcc.innerHTML)+1;
+					}
+				}	
+			});
+			}else{
+				alert('亲一天顶一次哦');	
+			}
+		};
+		//踩
+		var oRef = oDiv.getElementsByTagName('a')[1];
+		oRef.onclick = function(){
+			if(!getCookie('ref'+id)){
+				ajax({
+				url:url,
+				data:{
+					act:'ref',
+					id:id
+				},
+				succ:function(str){
+					var json = eval('('+str+')');
+					if(!json.error){
+						setCookie('ref'+id,1,1);
+						oRef.innerHTML = parseInt(oRef.innerHTML)+1;
+					}
+				}	
+			});
+			}else{
+				alert('亲，一天可以踩一次哦');	
+			}
+		};
+		return oDiv;
+	}
+	//获取某页数据
+	function getReply(n){
+		ajax({
+			url:url,
+			data:{
+				act:'get',
+				page:n	
+			},
+			succ:function(str){
+				oM.innerHTML = '';
+				var arr = eval('('+str+')');
+				for(var i = 0;i<arr.length;i++){
+					var oDiv = createReply(arr[i].id,arr[i].content,arr[i].time,arr[i].acc,arr[i].ref);
+					oM.appendChild(oDiv);
+				}
+			}
+		});
+	}
+	//获取某页数据
+	getReply(iNow);
+	//获取页数
+	function get_page_count(){
+		ajax({
+			url:url,
+			data:{
+				act:'get_page_count'	
+			},
+			succ:function(str){
+				oPage.innerHTML = '';
+				var json = eval('('+str+')');
+				var n = json.count;
+				for(var i = 0;i<n;i++){
+					var oA = document.createElement('a');
+					if(i == iNow-1){
+						oA.className = 'active';
+					}
+					oA.innerHTML = i+1;
+					oA.href = 'javascript:;';
+					oPage.appendChild(oA);
+					oA.onclick = function(){
+						for(var i = 0;i<oPage.children.length;i++){								
+							oPage.children[i].className = '';
+						}
+						this.className = 'active';	
+						iNow = this.innerHTML;
+						getReply(iNow);
+					};
+		
+				}
+				
+			}	
+		});
+	}
+	get_page_count();
+};
+</script>
+</head>
+
+<body>
+<div class="znsArea">
+<!--留言-->
+     <div class="takeComment">
+        <textarea name="textarea" class="takeTextField" id="tijiaoText"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" class="inputs" value="" id="sendBtn" />
+            <span>(可按 Enter 回复)</span>
+        </div>
+    </div>
+<!--已留-->
+    <div class="commentOn">
+        <div class="noContent">暂无留言</div>
+        <div class="messList" id="messList">
+        
+        </div>
+        <div class="page" id="page">
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
