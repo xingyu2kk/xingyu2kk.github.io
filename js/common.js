@@ -4,6 +4,7 @@
 function getStyle(obj,sName){
     return obj.currentStyle?obj.currentStyle[sName]:getComputedStyle(obj)[sName];
 }
+
 function setStyle(){
     var arg=arguments;
     if(arg.length==3){
@@ -14,6 +15,7 @@ function setStyle(){
         }
     }
 }
+
 function getPos(obj){
     var t=0;
     var l=0;
@@ -24,18 +26,23 @@ function getPos(obj){
     }
     return {'left':l,'top':t};
 }
+
 function rnd(n,m){
     return Math.floor(Math.random()*(m-n)+n);
 }
+
 function a2d(n){
     return n*180/Math.PI;
 }
+
 function d2a(n){
     return n*Math.PI/180;
 }
+
 function toDou(n){
     return n<10?'0'+n:''+n;
 }
+
 function json2url(json){
     var arr=[];
     for(var name in json){
@@ -43,6 +50,7 @@ function json2url(json){
     }
     return arr.join('&');
 }
+
 function url2json(str){
     var json={};
     var arr=str.split('&');
